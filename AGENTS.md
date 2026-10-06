@@ -8,48 +8,54 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
-## Comandos
+## Commands
 
-Solo pnpm (`.npmrc` tiene `save-exact=true`: las dependencias se pinean exactas, sin `^`).
+pnpm only. Pin dependencies exactly (no `^`): pnpm 11 ignores `save-exact` in `.npmrc`, so strip it after `pnpm add` or use `pnpm add -E`.
 
 ```bash
-pnpm dev            # dev server en :3000
-pnpm build          # build de producción (Turbopack por defecto en Next 16)
+pnpm dev            # dev server on :3000
+pnpm build          # production build (Turbopack, type-checks)
 pnpm lint           # ESLint (eslint-config-next + eslint-config-prettier)
-pnpm lint:fix       # ESLint --fix y luego prettier --write .
-pnpm lint:css       # Stylelint sobre **/*.scss
+pnpm lint:fix       # ESLint --fix, then prettier --write .
+pnpm lint:css       # Stylelint on **/*.scss
 pnpm lint:css:fix
 ```
 
-- No hay framework de tests, ni CI, ni husky, ni hooks de git. No los busques.
-- `next build` **sí** ejecuta TypeScript y falla si hay errores de tipos, pero **ya no ejecuta el linter** (`next lint` fue eliminado en Next 16). Hay que correr los linters a mano.
-- Para solo chequear tipos: `npx next typegen && npx tsc --noEmit`. `next typegen` es necesario para tener los tipos de rutas (`PageProps`, `LayoutProps`) generados; sin él, `tsc` no los valida.
-- Comentarios en el código mínimos, cortos y a lo sumo, de definición.
+- There are no tests, CI or git hooks.
+- `next build` fails on type errors but does **not** lint (`next lint` was removed in Next 16). Run `pnpm lint` and `pnpm lint:css` manually.
+- Type-check only: `npx next typegen && npx tsc --noEmit` (`typegen` generates route types such as `PageProps`/`LayoutProps`).
+
+## Architecture
+
+- `@/*` resolves to the **repo root** (no `src/`).
+- Routes (`app/`, no i18n): `/` (one-page home built from `components/sections/*`), `/proyectos/[slug]` (static, `generateStaticParams`, `dynamicParams = false`).
+- Content lives in JSON and is read **only** through `lib/content.ts` getters:
+    - `content/cv.json` (typed by `types/cv.ts`) → profile, experience, education, skills… `getProfile()` deliberately omits phone, address and birth date.
+    - `content/projects.json` (typed by `types/project.ts`) → projects. `placeholder: true` marks example entries; `cover` is optional (a gradient from `accent` is generated otherwise).
+- Server components by default; only motion wrappers are `'use client'`.
+
+## Motion
+
+- GSAP (+ ScrollTrigger, SplitText, `@gsap/react`) and Lenis. Always import from `@/lib/motion/gsap` (registers plugins once, exports `EASE`, `DURATION`, `MOTION_QUERY`).
+- `components/motion/smooth-scroll.tsx`: root Lenis driven by `gsap.ticker`, `anchors: true` (plain `<a href="#id">` scrolls smoothly).
+- Reusable wrappers: `Reveal` (fade/translate on enter, optional `stagger`), `SplitHeading` (masked line/word reveal), `Magnetic`.
+- Animated elements get `data-reveal` → `opacity: 0` in CSS before hydration (no flash); the wrapper sets it visible. A `<noscript>` style in the layout undoes it.
+- Every animation uses `gsap.matchMedia()` with a reduced-motion branch where content is fully visible. Animate only `transform`/`opacity`.
+- Route transitions: React `<ViewTransition name share="morph" default="none">` on project cover/title in both the card and the detail page. CSS in `styles/_base.scss`.
 
 ## SCSS
 
-- `next.config.ts` está vacío: **no hay `sassOptions.additionalData`**. Los SCSS de componente (`.module.scss`) se compilan como stylesheet raíz, así que **las variables de `app/globals.scss` (`$color-*`, `$spacing-*`, `$breakpoint-*`) no están disponibles** ahí y el build falla con `Undefined variable`. Para compartir variables hay que moverlas a un partial e importar con `@use`, o configurar `additionalData`.
-- `globals.scss` se importa en `app/layout.tsx` (no en `_app` ni `_document`).
-- Stylelint es estricto y va más allá de lo obvio:
-  - Clases BEM en kebab-case: `.card`, `.card__title`, `.card--active`. `.cardHeader` o `.card_title` fallan.
-  - Propiedades **en orden alfabético** dentro de cada bloque.
-  - `!important` está prohibido; usa `@extend`/`@include` (además `@extend` va antes que `@include`).
-  - Corre `pnpm lint:css:fix` antes de dar por terminado: varios de estos errores son auto-corregibles.
+- `styles/_tokens.scss`: all design tokens as CSS custom properties (`--color-*`, `--font-*`, `--text-*` fluid scale, `--space-*`, `--radius-*`, `--ease-*`, `--duration-*`, `--z-*`). Use tokens, never hardcode values.
+- `styles/abstracts/` (breakpoints `mq('sm'|'md'|'lg'|'xl')`, `container`, `hover`, `reduced-motion`, `visually-hidden`, `label`) is auto-injected in every `.scss` via `sassOptions.additionalData` in `next.config.ts` — no `@use` needed.
+- `app/globals.scss` only `@use`s tokens, reset and base. Fonts come from `app/fonts.ts` (`next/font`).
+- Shared section wrapper: `components/ui/section.module.scss` + `SectionHeader`.
+- Stylelint (`.stylelintrc.mjs`) enforces:
+    - BEM class names in kebab-case: `.card`, `.card__title`, `.card--active` (not `.cardHeader` or `.card_title`). Access hyphenated classes as `styles['contact-item']`.
+    - Alphabetical property order; `@extend` before `@include`, both before declarations.
+    - No `!important`.
+- Run `pnpm lint:css:fix` before finishing; most of these are auto-fixable.
 
-## Alias y estructura
+## Conventions
 
-- `@/*` apunta a la **raíz** del repo (`tsconfig.json` → `"@/*": ["./*"]`), no a `src/`.
-- Rutas en `app/` (flat, sin locale): `/`, `/cv`, `/cv/pdf`.
-- UI en `components/` (`cv/`, `ui/`, `layout/`), datos estáticos en `content/*.json` (CV real en `cv.json`), utilidades en `lib/`, tipos en `types/`.
-- `pnpm-workspace.yaml` **no declara un monorepo**: no tiene campo `packages/`, solo `allowBuilds` desactivando los build scripts de `sharp` y `unrs-resolver`.
-
-## CV / datos
-
-- `content/cv.json` tiene los datos reales del CV (experiencia, educación, certificaciones, idiomas, skills).
-- `app/cv/page.tsx` renderiza el CV desde ese JSON.
-- `app/cv/pdf/route.ts` genera HTML para imprimir/guardar como PDF (sin librerías pesadas).
-- Tipos en `types/cv.ts`.
-
-## Formato
-
-Prettier: 4 espacios, comillas simples, `printWidth` 120, `trailingComma: es5`, LF. Ojo: `.prettierignore` excluye `*.md`, así que los markdown no se formatean. Los comentarios del código están en español; mantenlo.
+- Prettier: 4 spaces, single quotes, `printWidth` 120, `trailingComma: es5`, LF. `*.md` is in `.prettierignore`.
+- Code comments: minimal, short, in Spanish. UI text is in Spanish (`<html lang="es">`).

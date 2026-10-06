@@ -1,0 +1,63 @@
+/* Tokens de diseño: única fuente de colores, tipografía, espaciado y movimiento */
+:root {
+    /* Color */
+    --color-bg: #0f0e0c;
+    --color-bg-elevated: #191714;
+    --color-surface: #22201c;
+    --color-text: #ece7df;
+    --color-text-muted: #8f8a80;
+    --color-text-subtle: #5c5850;
+    --color-border: rgb(236 231 223 / 12%);
+    --color-accent: #ff5a1f;
+    --color-accent-contrast: #0f0e0c;
+
+    /* Tipografía (las variables --font-*-family las inyecta next/font) */
+    --font-display: var(--font-instrument-serif), 'Times New Roman', serif;
+    --font-sans: var(--font-geist), system-ui, sans-serif;
+    --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+    /* Escala fluida: min @ 360px, max @ 1440px */
+    --text-xs: clamp(0.75rem, 0.72rem + 0.1vw, 0.8125rem);
+    --text-sm: clamp(0.875rem, 0.84rem + 0.15vw, 0.9375rem);
+    --text-base: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+    --text-lg: clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem);
+    --text-xl: clamp(1.5rem, 1.3rem + 1vw, 2.25rem);
+    --text-2xl: clamp(2rem, 1.6rem + 2vw, 3.5rem);
+    --text-3xl: clamp(2.75rem, 2rem + 3.5vw, 5.5rem);
+    --text-display: clamp(3.5rem, 1.5rem + 9vw, 11rem);
+    --leading-tight: 0.95;
+    --leading-snug: 1.2;
+    --leading-normal: 1.6;
+    --tracking-tight: -0.03em;
+    --tracking-wide: 0.08em;
+
+    /* Espaciado */
+    --space-3xs: 0.25rem;
+    --space-2xs: 0.5rem;
+    --space-xs: 0.75rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2.5rem;
+    --space-xl: 4rem;
+    --space-2xl: clamp(5rem, 3rem + 8vw, 10rem);
+    --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+    --container-max: 90rem;
+
+    /* Forma */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1.5rem;
+    --radius-full: 999px;
+
+    /* Movimiento (alineado con lib/motion/gsap.ts) */
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+    --duration-fast: 200ms;
+    --duration-base: 400ms;
+    --duration-slow: 800ms;
+
+    /* Capas */
+    --z-base: 1;
+    --z-header: 50;
+    --z-overlay: 100;
+}

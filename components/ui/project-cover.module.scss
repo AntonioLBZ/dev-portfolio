@@ -1,0 +1,41 @@
+.project-cover {
+    aspect-ratio: 4 / 3;
+    background-color: var(--color-bg-elevated);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+}
+
+.project-cover__inner {
+    align-items: center;
+    background:
+        radial-gradient(
+            circle at 25% 20%,
+            color-mix(in oklab, var(--project-accent) 70%, transparent),
+            transparent 55%
+        ),
+        radial-gradient(
+            circle at 80% 85%,
+            color-mix(in oklab, var(--project-accent) 35%, transparent),
+            transparent 50%
+        ),
+        var(--color-surface);
+    display: flex;
+    inset: -10% 0;
+    justify-content: center;
+    position: absolute;
+    transition: transform var(--duration-slow) var(--ease-out-expo);
+}
+
+.project-cover__image {
+    object-fit: cover;
+}
+
+.project-cover__mark {
+    color: var(--color-bg);
+    font-family: var(--font-display);
+    font-size: clamp(6rem, 20vw, 16rem);
+    font-style: italic;
+    line-height: 1;
+    mix-blend-mode: overlay;
+}

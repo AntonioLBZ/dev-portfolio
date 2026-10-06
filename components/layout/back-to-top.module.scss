@@ -1,0 +1,48 @@
+.back-to-top {
+    @include hover {
+        border-color: var(--color-accent);
+        color: var(--color-accent);
+
+        svg {
+            transform: translateY(-2px);
+        }
+    }
+
+    align-items: center;
+    background-color: var(--color-bg-elevated);
+    block-size: 3rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    bottom: var(--gutter);
+    display: flex;
+    inline-size: 3rem;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    right: var(--gutter);
+    transform: translateY(1rem);
+    transition:
+        opacity var(--duration-base) ease,
+        transform var(--duration-base) var(--ease-out-expo),
+        border-color var(--duration-fast) ease,
+        color var(--duration-fast) ease;
+    z-index: var(--z-header);
+
+    svg {
+        block-size: 1.25rem;
+        fill: none;
+        inline-size: 1.25rem;
+        stroke: currentcolor;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.5;
+        transition: transform var(--duration-base) var(--ease-out-expo);
+    }
+}
+
+.back-to-top--visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+}

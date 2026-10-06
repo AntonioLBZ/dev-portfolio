@@ -1,9 +1,21 @@
+import { About } from '@/components/sections/about';
+import { Contact } from '@/components/sections/contact';
+import { Education } from '@/components/sections/education';
+import { Experience } from '@/components/sections/experience';
+import { Hero } from '@/components/sections/hero';
+import { Projects } from '@/components/sections/projects';
+import { Skills } from '@/components/sections/skills';
+
 export default function Home() {
     return (
-        <main style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
-            <h1>Hola, esto es mi portfolio</h1>
-            <p>En construcción...</p>
-            <p>Desarrollador frontend apasionado por crear aplicaciones web modernas y escalables.</p>
-        </main>
+        <>
+            <Hero />
+            <About />
+            <Experience />
+            <Skills />
+            <Projects />
+            <Education />
+            <Contact />
+        </>
     );
 }

@@ -1,0 +1,14 @@
+.footer {
+    border-top: 1px solid var(--color-border);
+}
+
+.footer__inner {
+    @include container;
+    @include label;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    justify-content: space-between;
+    padding-block: var(--space-md);
+}

@@ -1,0 +1,91 @@
+.hero {
+    @include container;
+
+    display: grid;
+    gap: var(--space-xl);
+    grid-template-rows: auto 1fr auto;
+    min-height: 100svh;
+    padding-block: calc(var(--space-xl) + var(--space-md)) var(--space-lg);
+}
+
+.hero__top {
+    @include label;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.hero__name {
+    align-self: end;
+    font-family: var(--font-display);
+    font-size: var(--text-display);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-tight);
+
+    em {
+        color: var(--color-accent);
+    }
+}
+
+.hero__bottom {
+    align-items: end;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+    justify-content: space-between;
+}
+
+.hero__role {
+    color: var(--color-text-muted);
+    font-size: var(--text-lg);
+    line-height: var(--leading-snug);
+    max-width: 32ch;
+
+    em {
+        color: var(--color-text);
+        font-family: var(--font-display);
+    }
+}
+
+.hero__scroll {
+    @include label;
+
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xs);
+}
+
+.hero__line {
+    @include reduced-motion {
+        &::after {
+            animation: none;
+            transform: none;
+        }
+    }
+
+    background-color: var(--color-border);
+    block-size: 3.5rem;
+    inline-size: 1px;
+    overflow: hidden;
+    position: relative;
+
+    &::after {
+        animation: scroll-line 2s var(--ease-in-out-quart) infinite;
+        background-color: var(--color-accent);
+        content: '';
+        inset: 0;
+        position: absolute;
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes scroll-line {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(100%);
+    }
+}

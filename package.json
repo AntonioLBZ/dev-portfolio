@@ -12,6 +12,9 @@
         "lint:css:fix": "stylelint \"**/*.scss\" --fix"
     },
     "dependencies": {
+        "@gsap/react": "2.1.2",
+        "gsap": "3.15.0",
+        "lenis": "1.3.26",
         "next": "16.3.8",
         "react": "19.3.0",
         "react-dom": "19.3.0",
@@ -27,6 +30,7 @@
         "prettier": "3.9.9",
         "stylelint": "17.16.0",
         "stylelint-config-standard": "40.0.0",
+        "stylelint-config-standard-scss": "17.0.0",
         "stylelint-order": "8.1.1",
         "stylelint-selector-bem-pattern": "5.0.0",
         "typescript": "6.0.3"

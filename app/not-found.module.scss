@@ -1,0 +1,30 @@
+.not-found {
+    @include container;
+
+    align-content: center;
+    display: grid;
+    gap: var(--space-md);
+    min-height: 100svh;
+}
+
+.not-found__code {
+    @include label;
+
+    color: var(--color-accent);
+}
+
+.not-found__title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    line-height: var(--leading-tight);
+
+    em {
+        color: var(--color-accent);
+    }
+}
+
+.not-found__link {
+    @include label;
+
+    justify-self: start;
+}

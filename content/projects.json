@@ -1,4 +1,38 @@
-{
-    "placeholder": true,
-    "note": "Estructura base para proyectos. Se completará en fase posterior."
-}
+[
+    {
+        "slug": "anicalendar",
+        "title": "AniCalendar",
+        "summary": "Calendario semanal con los estrenos de los animes que estás viendo.",
+        "description": [
+            "SPA que muestra, día a día, cuándo se emiten los episodios de los animes que sigues. Basta con introducir tu usuario de AniList, Kitsu o MyAnimeList, sin registro ni login.",
+            "Ajustes persistentes en local: tema claro/oscuro/sistema, filtros de contenido, días vacíos, primer día de la semana y formato de hora. Disponible en español e inglés.",
+            "Las peticiones a MyAnimeList pasan por un proxy en servidor para no exponer las credenciales del cliente."
+        ],
+        "year": "2026",
+        "role": "Diseño y desarrollo",
+        "stack": ["Next.js 16", "React 19", "TypeScript", "React Aria", "TanStack Query", "next-intl", "CSS", "Vitest"],
+        "accent": "#7c9cff",
+        "links": {
+            "repo": "https://github.com/AntonioLBZ/spa-anicalendar",
+            "live": "https://anicalendar-lbz.vercel.app/es"
+        },
+        "featured": true
+    },
+    {
+        "slug": "dev-portfolio",
+        "title": "Dev Portfolio",
+        "summary": "Este portfolio: una web one-page con animaciones ligadas al scroll.",
+        "description": [
+            "Portfolio personal construido desde cero con un sistema de diseño propio basado en tokens CSS y SCSS modular, sin frameworks de estilos.",
+            "Animaciones con GSAP (ScrollTrigger y SplitText), scroll suave con Lenis y transiciones entre páginas con la View Transitions API, respetando siempre prefers-reduced-motion."
+        ],
+        "year": "2026",
+        "role": "Diseño y desarrollo",
+        "stack": ["Next.js 16", "React 19", "TypeScript", "SCSS", "GSAP", "Lenis"],
+        "accent": "#ff5a1f",
+        "links": {
+            "repo": "https://github.com/AntonioLBZ/dev-portfolio"
+        },
+        "featured": true
+    }
+]

@@ -1,0 +1,7 @@
+// Contenedor común de las secciones de la home
+.section {
+    @include container;
+
+    padding-block: var(--space-2xl);
+    scroll-margin-top: var(--space-lg);
+}

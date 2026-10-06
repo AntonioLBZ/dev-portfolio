@@ -1,5 +1,5 @@
 const config = {
-    extends: 'stylelint-config-standard',
+    extends: 'stylelint-config-standard-scss',
     plugins: ['stylelint-order', 'stylelint-selector-bem-pattern'],
     rules: {
         // Keep everything in order

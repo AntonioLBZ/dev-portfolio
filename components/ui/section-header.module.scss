@@ -1,0 +1,25 @@
+.section-header {
+    display: grid;
+    gap: var(--space-md);
+    margin-block-end: var(--space-xl);
+}
+
+.section-header__label {
+    @include label;
+}
+
+.section-header__index {
+    color: var(--color-accent);
+}
+
+.section-header__title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-tight);
+    max-width: 18ch;
+
+    em {
+        color: var(--color-accent);
+    }
+}

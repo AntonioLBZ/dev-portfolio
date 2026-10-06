@@ -1,0 +1,15 @@
+@use 'sass:map';
+
+$breakpoints: (
+    'sm': 40rem,
+    'md': 48rem,
+    'lg': 64rem,
+    'xl': 80rem,
+);
+
+/* Mobile-first: aplica desde el breakpoint indicado */
+@mixin mq($bp) {
+    @media (width >= map.get($breakpoints, $bp)) {
+        @content;
+    }
+}

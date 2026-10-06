@@ -1,0 +1,48 @@
+.skills__marquees {
+    display: grid;
+    gap: var(--space-sm);
+    margin-block-end: var(--space-xl);
+}
+
+.skills__grid {
+    @include mq('md') {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mq('lg') {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    display: grid;
+    gap: var(--space-md);
+}
+
+.skills__card {
+    align-content: start;
+    background-color: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    display: grid;
+    gap: var(--space-md);
+    padding: var(--space-md);
+}
+
+.skills__title {
+    @include label;
+
+    color: var(--color-accent);
+}
+
+.skills__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+}
+
+.skills__tag {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    padding: var(--space-3xs) var(--space-xs);
+}
