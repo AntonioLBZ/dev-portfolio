@@ -1,4 +1,147 @@
 {
-    "placeholder": true,
-    "note": "Estructura base para el CV. Se completará en fase posterior."
+    "personalInfo": {
+        "name": "Antonio López Benítez",
+        "title": "Frontend Developer",
+        "birthDate": "***REMOVED***",
+        "nationality": "Española",
+        "email": "antoniolozbez@gmail.com",
+        "phone": "***REMOVED***",
+        "address": "La Coruña, Galicia, España",
+        "linkedin": "https://www.linkedin.com/in/antonio-l-b42177229/"
+    },
+    "about": "Me apasiona desarrollar y estudiar nuevas tecnologías, y me adapto a diferentes situaciones. Estoy interesado en crecer profesionalmente.",
+    "experience": [
+        {
+            "company": "Napptilus Tech Labs",
+            "location": "La Coruña, España",
+            "position": "Desarrollador de front-end",
+            "startDate": "07/2026",
+            "endDate": "Actual",
+            "description": ""
+        },
+        {
+            "company": "Altia",
+            "location": "La Coruña, España",
+            "position": "Desarrollador de software",
+            "startDate": "07/2025",
+            "endDate": "07/2026",
+            "description": "Desarrollo de nuevas funcionalidades compartidas para grupos ecommerce."
+        },
+        {
+            "company": "Altia",
+            "location": "La Coruña, España",
+            "position": "Desarrollador de software",
+            "startDate": "02/2024",
+            "endDate": "06/2025",
+            "description": "Gestión, análisis y corrección de incidencias relacionadas con sistemas de gestión de contenidos en Angular."
+        },
+        {
+            "company": "Altia",
+            "location": "La Coruña, España",
+            "position": "Técnico de soporte de software",
+            "startDate": "08/2022",
+            "endDate": "02/2024",
+            "description": "Resolución de incidencias técnicas para tiendas ecommerce."
+        }
+    ],
+    "education": [
+        {
+            "title": "Grado en Ingeniería Informática",
+            "institution": "Universidad de Cádiz",
+            "location": "Puerto Real, Cádiz, España",
+            "startDate": "09/2017",
+            "endDate": "06/2022",
+            "description": "Especialización en la rama de Computación, con conocimientos de redes, programación web y programación móvil."
+        },
+        {
+            "title": "Bachillerato, Ciencias",
+            "institution": "I.E.S. Poeta García Gutiérrez",
+            "location": "Chiclana de la Frontera, España",
+            "startDate": "09/2015",
+            "endDate": "06/2017",
+            "description": ""
+        },
+        {
+            "title": "Educación Secundaria Obligatoria (ESO), Ciencias",
+            "institution": "Salesianos Campano",
+            "location": "Chiclana de la Frontera, España",
+            "startDate": "09/2011",
+            "endDate": "07/2015",
+            "description": ""
+        }
+    ],
+    "certifications": [
+        {
+            "title": "Competencias Básicas en Accesibilidad Digital y Web",
+            "issuer": "Udemy",
+            "issueDate": "08/2025",
+            "credentialId": "UC-b4a6de44-32b2-42a6-b5b0-1b566ca1813d"
+        },
+        {
+            "title": "Desarrollo de aplicaciones web con React 19",
+            "issuer": "campusMVP",
+            "issueDate": "07/2025",
+            "credentialId": "DA2040E8-8BD0-4DBB-AEC8-BC88A6240943"
+        },
+        {
+            "title": "Programación avanzada con JavaScript y ECMAScript",
+            "issuer": "campusMVP",
+            "issueDate": "06/2025",
+            "credentialId": "70A35983-F5C1-495E-9DD0-B4D4963434BC"
+        },
+        {
+            "title": "Aptis English Certificate C - Score 166",
+            "issuer": "British Council",
+            "issueDate": "07/2023",
+            "credentialId": "BC10000110249"
+        },
+        {
+            "title": "Git: Control de código fuente para programadores",
+            "issuer": "campusMVP",
+            "issueDate": "03/2025",
+            "credentialId": "FFD39F00-91E3-4F42-B0F1-7856F7F5315B"
+        },
+        {
+            "title": "Angular moderno: aplicaciones web con Angular 17",
+            "issuer": "TrainingIT",
+            "issueDate": "06/2024",
+            "credentialId": "e7S3XipDFY"
+        },
+        {
+            "title": "Inteligencia Artificial y Deep Learning – Redes Neuronales con Tensorflow 2",
+            "issuer": "TrainingIT",
+            "issueDate": "11/2023",
+            "credentialId": "OToAR5ahZG"
+        },
+        {
+            "title": "CCNA: Routing and Switching",
+            "issuer": "Cisco",
+            "issueDate": "10/2019",
+            "credentialId": ""
+        },
+        {
+            "title": "CCNP ROUTE: Implementing IP Routing",
+            "issuer": "Cisco",
+            "issueDate": "05/2021",
+            "credentialId": ""
+        }
+    ],
+    "languages": {
+        "native": ["Español"],
+        "other": [
+            {
+                "language": "Inglés",
+                "level": "B2 - C",
+                "certificate": "Aptis English Certificate C - Score 166"
+            }
+        ]
+    },
+    "skills": {
+        "main": ["OpenCode", "Orca ADE", "Claude Code", "a11y", "o11y", "Grafana"],
+        "tools": ["Git", "Github", "Eclipse", "Visual Studio Code", "JSON", "XML", "Jira / Confluence", "Grafana", "Jira Service Management"],
+        "languages": ["Python", "Java", "PHP", "C++", "C", "JavaScript", "Keras from Tensorflow", "CSharp", "MATLAB"],
+        "appProgramming": ["Android (Android Studio)", "Unreal blueprints", "Unity (C#)"],
+        "webServices": ["CSS", "HTML", "MySQL", "HTML5", "CSS3", "RESTful architecture", "JQuery", "JavaScript / Ajax", "SQL", "AJAX", "PhpMyAdmin"],
+        "workSkills": ["Trabajo en equipo", "Interés por aprender", "Adaptabilidad", "Investigación de nuevas tecnologías"]
+    }
 }

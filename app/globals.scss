@@ -1,33 +1,33 @@
-// ============================================
-// Global variables — convention example only
-// ============================================
+/* ============================================
+   Global variables — convention example only
+   ============================================ */
 
-// Colors
+/* Colors */
 $color-bg: #0a0a0a;
 $color-text: #fafafa;
 $color-muted: #a1a1aa;
 $color-accent: #3b82f6;
 
-// Typography
+/* Typography */
 $font-sans:
     system-ui,
     -apple-system,
     sans-serif;
 $font-mono: ui-monospace, monospace;
 
-// Spacing
+/* Spacing */
 $spacing-xs: 0.25rem;
 $spacing-sm: 0.5rem;
 $spacing-md: 1rem;
 $spacing-lg: 2rem;
 $spacing-xl: 4rem;
 
-// Breakpoints
+/* Breakpoints */
 $breakpoint-sm: 640px;
 $breakpoint-md: 768px;
 $breakpoint-lg: 1024px;
 
-// Minimal reset
+/* Minimal reset */
 *,
 *::before,
 *::after {
@@ -37,8 +37,8 @@ $breakpoint-lg: 1024px;
 }
 
 body {
-    font-family: $font-sans;
     background-color: $color-bg;
     color: $color-text;
+    font-family: $font-sans;
     line-height: 1.6;
 }
