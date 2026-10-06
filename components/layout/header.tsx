@@ -26,13 +26,13 @@ export function Header({ links }: HeaderProps) {
     const hasOpened = useRef(false);
     const reduced = useReducedMotion();
 
-    // Se oculta al bajar y reaparece al subir
+    // Hides on scroll down, shows on scroll up
     const lenis = useLenis(({ scroll, direction }) => {
         setScrolled(scroll > 24);
         setHidden(direction === 1 && scroll > 200);
     });
 
-    // Entra desde arriba y sale hacia abajo (sin reduced motion basta con la clase --open)
+    // Menu open/close timeline (reduced motion falls back to the --open class)
     useGSAP(
         () => {
             const menu = menuRef.current;
@@ -86,7 +86,7 @@ export function Header({ links }: HeaderProps) {
         return () => window.removeEventListener('keydown', onKey);
     }, [open]);
 
-    // Cierra el menú y desplaza a la sección (en otra ruta navega a la home)
+    // Closes the menu, then scrolls to the section (or routes home)
     const goTo = (e: React.MouseEvent, id: string) => {
         e.preventDefault();
         setOpen(false);

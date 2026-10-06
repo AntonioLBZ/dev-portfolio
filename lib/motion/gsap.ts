@@ -5,7 +5,7 @@ import { SplitText } from 'gsap/SplitText';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText);
 
-// Mismos valores que --ease-* y --duration-* en styles/_tokens.scss
+// Mirrors --ease-* and --duration-* in styles/_tokens.scss
 export const EASE = {
     outExpo: 'expo.out',
     inOutQuart: 'power4.inOut',

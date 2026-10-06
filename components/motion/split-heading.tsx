@@ -7,7 +7,7 @@ interface SplitHeadingProps {
     children: React.ReactNode;
     as?: React.ElementType;
     className?: string;
-    // 'load': al montar; 'scroll': al entrar en viewport
+    // 'load': on mount; 'scroll': on entering the viewport
     trigger?: 'load' | 'scroll';
     delay?: number;
     by?: 'lines' | 'words';
@@ -36,7 +36,7 @@ export function SplitHeading({
                     type: by,
                     onSplit(self) {
                         gsap.set(el, { opacity: 1 });
-                        // La máscara recorta con overflow; se amplía para no cortar acentos ni descendentes
+                        // Grows the mask so accents and descenders aren't clipped
                         gsap.set(self.masks, { marginBlock: '-0.2em', paddingBlock: '0.2em' });
                         return gsap.from(by === 'lines' ? self.lines : self.words, {
                             delay,

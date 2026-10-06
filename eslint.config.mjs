@@ -6,16 +6,10 @@ import prettier from 'eslint-config-prettier';
 const eslintConfig = defineConfig([
     ...nextVitals,
     ...nextTs,
-    // Desactiva reglas de ESLint que choquen con Prettier
+    // Turns off rules that conflict with Prettier
     prettier,
-    // Override default ignores of eslint-config-next.
-    globalIgnores([
-        // Default ignores of eslint-config-next:
-        '.next/**',
-        'out/**',
-        'build/**',
-        'next-env.d.ts',
-    ]),
+    // Default ignores of eslint-config-next
+    globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts']),
 ]);
 
 export default eslintConfig;

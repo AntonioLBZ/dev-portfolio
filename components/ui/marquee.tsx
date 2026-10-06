@@ -21,7 +21,7 @@ function Track({ items, hidden }: { items: string[]; hidden?: boolean }) {
     );
 }
 
-// Bucle horizontal infinito solo con CSS: la lista va duplicada
+// CSS-only infinite horizontal loop; the list is duplicated
 export function Marquee({ items, reverse = false, className }: MarqueeProps) {
     const classes = [styles.marquee, reverse && styles['marquee--reverse'], className].filter(Boolean).join(' ');
 

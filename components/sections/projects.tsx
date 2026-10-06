@@ -26,7 +26,7 @@ export function Projects() {
             <ProjectsParallax className={styles.projects}>
                 {projects.map((project) => (
                     <Reveal as="article" key={project.slug} className={styles.projects__item}>
-                        <Link href={`/proyectos/${project.slug}`} className={styles.projects__link}>
+                        <Link href={`/projects/${project.slug}`} className={styles.projects__link}>
                             <ViewTransition name={`project-cover-${project.slug}`} share="morph" default="none">
                                 <ProjectCover project={project} className={styles.projects__cover} />
                             </ViewTransition>

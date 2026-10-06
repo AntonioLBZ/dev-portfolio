@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import { gsap, MOTION_QUERY, useGSAP } from '@/lib/motion/gsap';
 
-// Parallax sutil del interior de cada portada
+// Subtle parallax inside each cover
 export function ProjectsParallax({ children, className }: { children: React.ReactNode; className?: string }) {
     const ref = useRef<HTMLDivElement>(null);
 

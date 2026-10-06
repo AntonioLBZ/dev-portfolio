@@ -7,7 +7,7 @@ interface RevealProps {
     children: React.ReactNode;
     as?: React.ElementType;
     className?: string;
-    // Anima los hijos directos en cascada en lugar del contenedor
+    // Animates direct children in a stagger instead of the container
     stagger?: number;
     delay?: number;
     y?: number;

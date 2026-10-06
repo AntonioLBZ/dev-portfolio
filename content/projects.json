@@ -31,7 +31,8 @@
         "stack": ["Next.js 16", "React 19", "TypeScript", "SCSS", "GSAP", "Lenis"],
         "accent": "#ff5a1f",
         "links": {
-            "repo": "https://github.com/AntonioLBZ/dev-portfolio"
+            "repo": "https://github.com/AntonioLBZ/dev-portfolio",
+            "live": "https://antoniolbz.vercel.app"
         },
         "featured": true
     }

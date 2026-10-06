@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import { gsap, MOTION_QUERY, SplitText, useGSAP } from '@/lib/motion/gsap';
 
-// Cada palabra se "enciende" al avanzar el scroll
+// Each word lights up as the page scrolls
 export function AboutText({ children, className }: { children: string; className?: string }) {
     const ref = useRef<HTMLParagraphElement>(null);
 

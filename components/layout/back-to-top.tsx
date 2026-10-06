@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useReducedMotion } from '@/lib/motion/use-reduced-motion';
 import styles from './back-to-top.module.scss';
 
-// Aparece tras bajar una pantalla
+// Shown after one screen of scroll
 export function BackToTop() {
     const [visible, setVisible] = useState(false);
     const reduced = useReducedMotion();

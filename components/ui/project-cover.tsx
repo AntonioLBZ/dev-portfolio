@@ -8,7 +8,7 @@ interface ProjectCoverProps {
     priority?: boolean;
 }
 
-// Portada: imagen si existe; si no, gradiente generado con el color del proyecto
+// Cover: image if present, else a gradient from the project accent
 export function ProjectCover({ project, className, priority }: ProjectCoverProps) {
     const style = { '--project-accent': project.accent ?? 'var(--color-accent)' } as React.CSSProperties;
 

@@ -7,7 +7,7 @@ interface SectionHeaderProps {
     title: React.ReactNode;
 }
 
-// Cabecera común de sección: "01 — Experiencia" + titular animado
+// Section header: "01 — Experiencia" + animated title
 export function SectionHeader({ index, label, title }: SectionHeaderProps) {
     return (
         <div className={styles['section-header']}>

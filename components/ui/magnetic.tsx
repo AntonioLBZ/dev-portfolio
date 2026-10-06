@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import { gsap, useGSAP } from '@/lib/motion/gsap';
 
-// Desplaza el hijo hacia el cursor; solo con puntero fino y sin reduced motion
+// Pulls its child toward the cursor (fine pointer, no reduced motion)
 export function Magnetic({ children, strength = 0.35 }: { children: React.ReactElement; strength?: number }) {
     const ref = useRef<HTMLSpanElement>(null);
 

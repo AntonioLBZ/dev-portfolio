@@ -4,8 +4,9 @@ import { ReactLenis, useLenis } from 'lenis/react';
 import { useEffect } from 'react';
 import { gsap, ScrollTrigger } from '@/lib/motion/gsap';
 import { useReducedMotion } from '@/lib/motion/use-reduced-motion';
+import { RouteScroll } from './route-scroll';
 
-// Lenis avanza con el ticker de GSAP para que ScrollTrigger y el scroll vayan sincronizados
+// Drives Lenis from the GSAP ticker, in sync with ScrollTrigger
 function GsapBridge() {
     const lenis = useLenis(ScrollTrigger.update);
 
@@ -24,9 +25,13 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     const reduced = useReducedMotion();
 
     return (
-        <ReactLenis root options={{ anchors: true, autoRaf: false, lerp: 0.1, smoothWheel: !reduced }}>
+        <ReactLenis
+            root
+            options={{ anchors: true, autoRaf: false, lerp: 0.1, smoothWheel: !reduced, stopInertiaOnNavigate: true }}
+        >
             <GsapBridge />
             {children}
+            <RouteScroll />
         </ReactLenis>
     );
 }

@@ -7,7 +7,7 @@ $breakpoints: (
     'xl': 80rem,
 );
 
-/* Mobile-first: aplica desde el breakpoint indicado */
+// Mobile-first: applies from the given breakpoint up
 @mixin mq($bp) {
     @media (width >= map.get($breakpoints, $bp)) {
         @content;

@@ -5,7 +5,7 @@ import section from '@/components/ui/section.module.scss';
 import { getSkills } from '@/lib/content';
 import styles from './skills.module.scss';
 
-// Quita duplicados sin distinguir mayúsculas
+// Case-insensitive dedupe
 function dedupe(...lists: string[][]) {
     const seen = new Set<string>();
     return lists.flat().filter((item) => {

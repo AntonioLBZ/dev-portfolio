@@ -28,7 +28,7 @@ pnpm lint:css:fix
 ## Architecture
 
 - `@/*` resolves to the **repo root** (no `src/`).
-- Routes (`app/`, no i18n): `/` (one-page home built from `components/sections/*`), `/proyectos/[slug]` (static, `generateStaticParams`, `dynamicParams = false`).
+- Routes (`app/`, no i18n): `/` (one-page home built from `components/sections/*`), `/projects/[slug]` (static, `generateStaticParams`, `dynamicParams = false`).
 - Content lives in JSON and is read **only** through `lib/content.ts` getters:
     - `content/cv.json` (typed by `types/cv.ts`) → profile, experience, education, skills… `getProfile()` deliberately omits phone, address and birth date.
     - `content/projects.json` (typed by `types/project.ts`) → projects. `placeholder: true` marks example entries; `cover` is optional (a gradient from `accent` is generated otherwise).
@@ -38,6 +38,7 @@ pnpm lint:css:fix
 
 - GSAP (+ ScrollTrigger, SplitText, `@gsap/react`) and Lenis. Always import from `@/lib/motion/gsap` (registers plugins once, exports `EASE`, `DURATION`, `MOTION_QUERY`).
 - `components/motion/smooth-scroll.tsx`: root Lenis driven by `gsap.ticker`, `anchors: true` (plain `<a href="#id">` scrolls smoothly).
+- `components/motion/route-scroll.tsx`: Lenis keeps its own scroll state, which Next and the browser don't reset on navigation. It scrolls to the top on new routes and restores the saved position on back/forward. `stopInertiaOnNavigate` cuts in-flight inertia on link clicks.
 - Reusable wrappers: `Reveal` (fade/translate on enter, optional `stagger`), `SplitHeading` (masked line/word reveal), `Magnetic`.
 - Animated elements get `data-reveal` → `opacity: 0` in CSS before hydration (no flash); the wrapper sets it visible. A `<noscript>` style in the layout undoes it.
 - Every animation uses `gsap.matchMedia()` with a reduced-motion branch where content is fully visible. Animate only `transform`/`opacity`.
@@ -58,4 +59,5 @@ pnpm lint:css:fix
 ## Conventions
 
 - Prettier: 4 spaces, single quotes, `printWidth` 120, `trailingComma: es5`, LF. `*.md` is in `.prettierignore`.
-- Code comments: minimal, short, in Spanish. UI text is in Spanish (`<html lang="es">`).
+- Code comments: English, minimal and short. Define what something is (`// Small mono label: dates, section indices`), never narrate what the code does; skip them when the name already says it. Use `//` in SCSS (not `/* */`).
+- UI text is in Spanish (`<html lang="es">`).

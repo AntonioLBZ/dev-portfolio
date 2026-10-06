@@ -4,7 +4,7 @@ import { useRef } from 'react';
 import { gsap, MOTION_QUERY, useGSAP } from '@/lib/motion/gsap';
 import styles from './experience.module.scss';
 
-// Línea vertical que se dibuja siguiendo el scroll
+// Vertical line drawn as the page scrolls
 export function ExperienceLine({ children, className }: { children: React.ReactNode; className?: string }) {
     const ref = useRef<HTMLDivElement>(null);
 

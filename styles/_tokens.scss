@@ -1,6 +1,6 @@
-/* Tokens de diseño: única fuente de colores, tipografía, espaciado y movimiento */
+// Design tokens: single source for color, type, spacing and motion
 :root {
-    /* Color */
+    // Color
     --color-bg: #0f0e0c;
     --color-bg-elevated: #191714;
     --color-surface: #22201c;
@@ -11,12 +11,12 @@
     --color-accent: #ff5a1f;
     --color-accent-contrast: #0f0e0c;
 
-    /* Tipografía (las variables --font-*-family las inyecta next/font) */
+    // Typography (font variables injected by next/font)
     --font-display: var(--font-instrument-serif), 'Times New Roman', serif;
     --font-sans: var(--font-geist), system-ui, sans-serif;
     --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-    /* Escala fluida: min @ 360px, max @ 1440px */
+    // Fluid scale: min @ 360px, max @ 1440px
     --text-xs: clamp(0.75rem, 0.72rem + 0.1vw, 0.8125rem);
     --text-sm: clamp(0.875rem, 0.84rem + 0.15vw, 0.9375rem);
     --text-base: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
@@ -31,7 +31,7 @@
     --tracking-tight: -0.03em;
     --tracking-wide: 0.08em;
 
-    /* Espaciado */
+    // Spacing
     --space-3xs: 0.25rem;
     --space-2xs: 0.5rem;
     --space-xs: 0.75rem;
@@ -43,20 +43,20 @@
     --gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
     --container-max: 90rem;
 
-    /* Forma */
+    // Shape
     --radius-sm: 0.375rem;
     --radius-md: 0.75rem;
     --radius-lg: 1.5rem;
     --radius-full: 999px;
 
-    /* Movimiento (alineado con lib/motion/gsap.ts) */
+    // Motion (mirrors lib/motion/gsap.ts)
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
     --duration-fast: 200ms;
     --duration-base: 400ms;
     --duration-slow: 800ms;
 
-    /* Capas */
+    // Layers
     --z-base: 1;
     --z-header: 50;
     --z-overlay: 100;

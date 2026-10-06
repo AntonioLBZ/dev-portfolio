@@ -28,7 +28,7 @@
     white-space: nowrap;
 }
 
-/* Etiqueta mono pequeña: fechas, índices de sección */
+// Small mono label: dates, section indices
 @mixin label {
     color: var(--color-text-muted);
     font-family: var(--font-mono);
