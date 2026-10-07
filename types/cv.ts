@@ -43,12 +43,12 @@ export interface Language {
 }
 
 export interface Skills {
-    main: string[];
+    frontend: string[];
+    quality: string[];
     tools: string[];
-    languages: string[];
-    appProgramming: string[];
-    webServices: string[];
-    workSkills: string[];
+    ai: string[];
+    backend: string[];
+    otherLanguages: string[];
 }
 
 export interface CVData {

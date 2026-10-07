@@ -5,29 +5,19 @@ import section from '@/components/ui/section.module.scss';
 import { getSkills } from '@/lib/content';
 import styles from './skills.module.scss';
 
-// Case-insensitive dedupe
-function dedupe(...lists: string[][]) {
-    const seen = new Set<string>();
-    return lists.flat().filter((item) => {
-        const key = item.toLowerCase();
-        if (seen.has(key)) return false;
-        seen.add(key);
-        return true;
-    });
-}
-
 export function Skills() {
     const skills = getSkills();
 
-    const rowOne = dedupe(skills.main, skills.webServices);
-    const rowTwo = dedupe(skills.languages, skills.tools);
+    const rowOne = skills.frontend;
+    const rowTwo = [...skills.tools, ...skills.ai, ...skills.backend];
 
     const categories = [
-        { title: 'Programación de apps', items: dedupe(skills.appProgramming) },
-        { title: 'Web', items: dedupe(skills.webServices) },
-        { title: 'Lenguajes', items: dedupe(skills.languages) },
-        { title: 'Herramientas', items: dedupe(skills.tools) },
-        { title: 'Competencias', items: dedupe(skills.workSkills) },
+        { title: 'Frontend', items: skills.frontend },
+        { title: 'Calidad', items: skills.quality },
+        { title: 'Herramientas', items: skills.tools },
+        { title: 'IA', items: skills.ai },
+        { title: 'Backend y datos', items: skills.backend },
+        { title: 'Otros lenguajes', items: skills.otherLanguages },
     ];
 
     return (

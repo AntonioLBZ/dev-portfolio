@@ -144,11 +144,11 @@
         ]
     },
     "skills": {
-        "main": ["OpenCode", "Orca ADE", "Claude Code", "a11y", "o11y", "Grafana"],
-        "tools": ["Git", "Github", "Eclipse", "Visual Studio Code", "JSON", "XML", "Jira / Confluence", "Grafana", "Jira Service Management"],
-        "languages": ["Python", "Java", "PHP", "C++", "C", "JavaScript", "Keras from Tensorflow", "CSharp", "MATLAB"],
-        "appProgramming": ["Android (Android Studio)", "Unreal blueprints", "Unity (C#)"],
-        "webServices": ["CSS", "HTML", "MySQL", "HTML5", "CSS3", "RESTful architecture", "JQuery", "JavaScript / Ajax", "SQL", "AJAX", "PhpMyAdmin"],
-        "workSkills": ["Trabajo en equipo", "Interés por aprender", "Adaptabilidad", "Investigación de nuevas tecnologías"]
+        "frontend": ["React", "Next.js", "TypeScript", "JavaScript", "Angular", "HTML", "CSS", "SCSS", "Tailwind CSS", "GSAP", "TanStack Query", "React Aria"],
+        "quality": ["Accesibilidad web (WCAG)", "Vitest", "Playwright", "ESLint", "Prettier", "Observabilidad", "Grafana"],
+        "tools": ["Git", "GitHub", "CI/CD", "pnpm", "Vercel", "Figma", "Jira / Confluence", "Visual Studio Code"],
+        "ai": ["Claude Code", "OpenCode", "TensorFlow"],
+        "backend": ["Node.js", "REST APIs", "SQL"],
+        "otherLanguages": ["Python", "Java", "C", "C++", "PHP"]
     }
 }
