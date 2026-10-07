@@ -30,15 +30,17 @@ pnpm lint:css:fix
 - `@/*` resolves to the **repo root** (no `src/`).
 - Routes (`app/`, no i18n): `/` (one-page home built from `components/sections/*`), `/projects/[slug]` (static, `generateStaticParams`, `dynamicParams = false`).
 - Content lives in JSON and is read **only** through `lib/content.ts` getters:
-    - `content/cv.json` (typed by `types/cv.ts`) → profile, experience, education, skills… `getProfile()` deliberately omits phone, address and birth date.
+    - `content/cv.json` (typed by `types/cv.ts`) → profile, experience, education, skills… `getProfile()` deliberately omits phone, address and birth date. A certification may carry an optional `credentialUrl` (shown as "Ver credencial" next to `credentialId` when expanded).
     - `content/projects.json` (typed by `types/project.ts`) → projects. `placeholder: true` marks example entries; `cover` is optional (a gradient from `accent` is generated otherwise).
-- Server components by default; only motion wrappers are `'use client'`.
+- Server components by default; only motion wrappers and `components/ui/expandable.tsx` are `'use client'`.
 
 ## Motion
 
 - GSAP (+ ScrollTrigger, SplitText, `@gsap/react`) and Lenis. Always import from `@/lib/motion/gsap` (registers plugins once, exports `EASE`, `DURATION`, `MOTION_QUERY`).
 - `components/motion/smooth-scroll.tsx`: root Lenis driven by `gsap.ticker`, `anchors: true` (plain `<a href="#id">` scrolls smoothly).
 - `components/motion/route-scroll.tsx`: Lenis keeps its own scroll state, which Next and the browser don't reset on navigation. It scrolls to the top on new routes and restores the saved position on back/forward. `stopInertiaOnNavigate` cuts in-flight inertia on link clicks.
+- `components/motion/background-field.tsx` + `lib/motion/contour-field.ts`: fixed WebGL2 canvas (`z-index: -1`, `pointer-events: none`) with faint contour lines. They drift with scroll, react to mouse hover and to taps on empty areas, and the glow takes the `data-accent` of the project in view or under the cursor. Static under reduced motion; no-op without WebGL2. `body` has no background so the canvas shows through (`html` paints it). Remove `<BackgroundField />` from `app/layout.tsx` to disable it.
+- `components/ui/expandable.tsx` (`ExpandableGroup` + `ExpandableItem`): rows with details revealed on mouse hover, tap or Enter/Space, one open per group. Used in the education section; an item without `details` renders as a plain row.
 - Reusable wrappers: `Reveal` (fade/translate on enter, optional `stagger`), `SplitHeading` (masked line/word reveal), `Magnetic`.
 - Animated elements get `data-reveal` → `opacity: 0` in CSS before hydration (no flash); the wrapper sets it visible. A `<noscript>` style in the layout undoes it.
 - Every animation uses `gsap.matchMedia()` with a reduced-motion branch where content is fully visible. Animate only `transform`/`opacity`.
@@ -47,13 +49,14 @@ pnpm lint:css:fix
 ## SCSS
 
 - `styles/_tokens.scss`: all design tokens as CSS custom properties (`--color-*`, `--font-*`, `--text-*` fluid scale, `--space-*`, `--radius-*`, `--ease-*`, `--duration-*`, `--z-*`). Use tokens, never hardcode values.
-- `styles/abstracts/` (breakpoints `mq('sm'|'md'|'lg'|'xl')`, `container`, `hover`, `reduced-motion`, `visually-hidden`, `label`) is auto-injected in every `.scss` via `sassOptions.additionalData` in `next.config.ts` — no `@use` needed.
+- `styles/abstracts/` (breakpoints `mq('sm'|'md'|'lg'|'xl')`, `container`, `hover`, `touch`, `reduced-motion`, `visually-hidden`, `label`) is auto-injected in every `.scss` via `sassOptions.additionalData` in `next.config.ts` — no `@use` needed.
 - `app/globals.scss` only `@use`s tokens, reset and base. Fonts come from `app/fonts.ts` (`next/font`).
 - Shared section wrapper: `components/ui/section.module.scss` + `SectionHeader`.
 - Stylelint (`.stylelintrc.mjs`) enforces:
     - BEM class names in kebab-case: `.card`, `.card__title`, `.card--active` (not `.cardHeader` or `.card_title`). Access hyphenated classes as `styles['contact-item']`.
     - Alphabetical property order; `@extend` before `@include`, both before declarations.
     - No `!important`.
+    - Sass emits declarations that follow an `@include` *after* it, so `@include reduced-motion`/`touch` cannot override a property declared in the same rule. Put transitions in `@media (prefers-reduced-motion: no-preference)` instead, and keep touch-only styles entirely inside `@include touch`.
 - Run `pnpm lint:css:fix` before finishing; most of these are auto-fixable.
 
 ## Conventions

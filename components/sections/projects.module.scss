@@ -21,8 +21,13 @@
             scale: 1.05;
         }
 
-        .projects__title {
+        .projects__title,
+        .projects__cta {
             color: var(--color-accent);
+        }
+
+        .projects__cta-arrow {
+            translate: var(--space-2xs);
         }
     }
 
@@ -72,5 +77,28 @@
         border: 1px solid var(--color-border);
         border-radius: var(--radius-full);
         padding: var(--space-3xs) var(--space-xs);
+    }
+}
+
+// Always visible: touch has no hover to hint that the card opens
+.projects__cta {
+    @include label;
+
+    align-items: center;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text);
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--space-2xs);
+    padding-top: var(--space-sm);
+    transition: color var(--duration-base) ease;
+}
+
+.projects__cta-arrow {
+    color: var(--color-accent);
+    font-size: var(--text-lg);
+
+    @media (prefers-reduced-motion: no-preference) {
+        transition: translate var(--duration-base) var(--ease-out-expo);
     }
 }

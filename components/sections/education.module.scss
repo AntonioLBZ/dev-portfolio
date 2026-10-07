@@ -27,19 +27,14 @@
 .education__item,
 .education__cert,
 .education__language {
-    @include hover {
-        background-color: var(--color-bg-elevated);
-    }
-
     border-bottom: 1px solid var(--color-border);
-    display: grid;
-    gap: var(--space-3xs);
     padding-block: var(--space-sm);
-    transition: background-color var(--duration-base) var(--ease-out-expo);
 }
 
 .education__language {
     align-items: baseline;
+    display: grid;
+    gap: var(--space-3xs);
     grid-template-columns: 1fr auto;
 }
 
@@ -51,10 +46,24 @@
     font-family: var(--font-display);
     font-size: var(--text-lg);
     line-height: var(--leading-snug);
+
+    @media (prefers-reduced-motion: no-preference) {
+        transition: color var(--duration-base) ease;
+    }
 }
 
 .education__cert-title {
     font-size: var(--text-base);
+
+    @media (prefers-reduced-motion: no-preference) {
+        transition: color var(--duration-base) ease;
+    }
+}
+
+// Open item (set by ExpandableItem)
+.education__item[data-open='true'] .education__title,
+.education__cert[data-open='true'] .education__cert-title {
+    color: var(--color-accent);
 }
 
 .education__meta {
@@ -66,4 +75,28 @@
     color: var(--color-text-muted);
     font-size: var(--text-sm);
     max-width: 60ch;
+}
+
+.education__credential {
+    display: grid;
+    gap: var(--space-3xs);
+}
+
+.education__credential-id {
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    overflow-wrap: anywhere;
+}
+
+.education__link {
+    @include label;
+
+    @include hover {
+        color: var(--color-accent);
+    }
+
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+    padding-bottom: var(--space-3xs);
+    transition: color var(--duration-fast);
 }

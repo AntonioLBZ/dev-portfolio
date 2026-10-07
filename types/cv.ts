@@ -33,6 +33,7 @@ export interface Certification {
     issuer: string;
     issueDate: string;
     credentialId: string;
+    credentialUrl?: string;
 }
 
 export interface Language {

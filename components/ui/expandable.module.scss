@@ -1,0 +1,98 @@
+.expandable__header {
+    display: grid;
+    gap: var(--space-3xs);
+    position: relative;
+}
+
+// Leaves room for the icon
+.expandable__header--toggle {
+    @include touch {
+        padding-inline-end: var(--space-lg);
+    }
+}
+
+// Covers the header so the whole row is the touch target
+.expandable__trigger {
+    cursor: default;
+    inset: 0;
+    position: absolute;
+}
+
+// Plus that turns into a cross: only where there is no hover to hint at the details
+.expandable__icon {
+    @include touch {
+        block-size: var(--space-sm);
+        color: var(--color-text-muted);
+        inline-size: var(--space-sm);
+        inset: var(--space-3xs) 0 auto auto;
+        position: absolute;
+
+        &::before,
+        &::after {
+            background-color: currentcolor;
+            block-size: 1px;
+            content: '';
+            inset: 50% 0 auto;
+            position: absolute;
+        }
+
+        &::after {
+            rotate: 90deg;
+        }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        transition:
+            color var(--duration-base) ease,
+            rotate var(--duration-base) var(--ease-out-expo);
+    }
+}
+
+.expandable__trigger[aria-expanded='true'] .expandable__icon {
+    color: var(--color-accent);
+    rotate: 45deg;
+}
+
+// 0fr -> 1fr animates the height of content of unknown size
+.expandable__panel {
+    display: grid;
+    grid-template-rows: 0fr;
+
+    @media (prefers-reduced-motion: no-preference) {
+        transition: grid-template-rows var(--duration-base) var(--ease-out-expo);
+    }
+
+    &[data-open='true'] {
+        grid-template-rows: 1fr;
+
+        .expandable__inner {
+            opacity: 1;
+        }
+
+        .expandable__content {
+            translate: 0;
+        }
+    }
+}
+
+.expandable__inner {
+    min-block-size: 0;
+    opacity: 0;
+    overflow: hidden;
+
+    @media (prefers-reduced-motion: no-preference) {
+        transition: opacity var(--duration-base) ease;
+    }
+}
+
+.expandable__content {
+    display: grid;
+    gap: var(--space-xs);
+    justify-items: start;
+    padding-top: var(--space-xs);
+    translate: 0 calc(var(--space-2xs) * -1);
+
+    @media (prefers-reduced-motion: no-preference) {
+        transition: translate var(--duration-base) var(--ease-out-expo);
+    }
+}

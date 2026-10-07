@@ -13,6 +13,13 @@
     }
 }
 
+// Exact complement of `hover`: touch, or any input without fine hover
+@mixin touch {
+    @media not ((hover: hover) and (pointer: fine)) {
+        @content;
+    }
+}
+
 @mixin reduced-motion {
     @media (prefers-reduced-motion: reduce) {
         @content;

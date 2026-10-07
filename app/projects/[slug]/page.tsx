@@ -30,7 +30,7 @@ export default async function ProjectPage({ params }: PageProps<'/projects/[slug
     ].filter((l): l is { href: string; label: string } => Boolean(l));
 
     return (
-        <article className={styles.project}>
+        <article className={styles.project} data-accent={project.accent}>
             <Link href="/#proyectos" className={styles.project__back}>
                 ← Volver
             </Link>

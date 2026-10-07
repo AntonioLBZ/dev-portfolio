@@ -26,7 +26,11 @@ export function Projects() {
             <ProjectsParallax className={styles.projects}>
                 {projects.map((project) => (
                     <Reveal as="article" key={project.slug} className={styles.projects__item}>
-                        <Link href={`/projects/${project.slug}`} className={styles.projects__link}>
+                        <Link
+                            href={`/projects/${project.slug}`}
+                            className={styles.projects__link}
+                            data-accent={project.accent}
+                        >
                             <ViewTransition name={`project-cover-${project.slug}`} share="morph" default="none">
                                 <ProjectCover project={project} className={styles.projects__cover} />
                             </ViewTransition>
@@ -42,6 +46,10 @@ export function Projects() {
                                     <li key={tech}>{tech}</li>
                                 ))}
                             </ul>
+                            <span className={styles.projects__cta} aria-hidden="true">
+                                Ver proyecto
+                                <span className={styles['projects__cta-arrow']}>→</span>
+                            </span>
                         </Link>
                     </Reveal>
                 ))}

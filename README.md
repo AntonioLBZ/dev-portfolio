@@ -71,9 +71,9 @@ dev-portfolio/
 │
 ├── components/
 │   ├── layout/             # Header, footer, back-to-top
-│   ├── motion/             # GSAP/Lenis wrappers (Reveal, SplitHeading, SmoothScroll, RouteScroll)
+│   ├── motion/             # GSAP/Lenis wrappers (Reveal, SplitHeading, SmoothScroll, RouteScroll, BackgroundField)
 │   ├── sections/           # Home sections (hero, about, experience, skills, projects, education, contact)
-│   └── ui/                 # Shared pieces (section header, project cover, marquee, magnetic)
+│   └── ui/                 # Shared pieces (section header, project cover, marquee, magnetic, expandable rows)
 │
 ├── content/                # Static data (JSON)
 │   ├── cv.json             # CV data
@@ -82,7 +82,7 @@ dev-portfolio/
 ├── lib/
 │   ├── content.ts          # Typed getters for the JSON content
 │   ├── nav.ts              # Home sections used by the navigation
-│   └── motion/             # GSAP setup (plugins, easings, durations) and reduced-motion hook
+│   └── motion/             # GSAP setup (plugins, easings, durations), reduced-motion hook and the background shader
 │
 ├── styles/
 │   ├── _tokens.scss        # Design tokens (colors, type scale, spacing, motion)

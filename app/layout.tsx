@@ -5,6 +5,7 @@ import { geist, geistMono, instrumentSerif } from './fonts';
 import { BackToTop } from '@/components/layout/back-to-top';
 import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
+import { BackgroundField } from '@/components/motion/background-field';
 import { SmoothScroll } from '@/components/motion/smooth-scroll';
 import { getProfile } from '@/lib/content';
 
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="es" className={`${instrumentSerif.variable} ${geist.variable} ${geistMono.variable}`}>
             <body>
+                <BackgroundField />
                 <noscript>
                     <style>{'[data-reveal]{opacity:1}'}</style>
                 </noscript>

@@ -3,6 +3,7 @@
 }
 
 .contact__links {
+    container-type: inline-size;
     display: grid;
     gap: var(--space-lg);
     justify-items: start;
@@ -23,14 +24,21 @@
     background-repeat: no-repeat;
     background-size: 0% 2px;
     font-family: var(--font-display);
-    font-size: var(--text-3xl);
+
+    // Shrinks to keep the address on one line: container width / (chars × ~0.4em per char in the display font)
+    font-size: clamp(var(--text-xl), 100cqi / (var(--chars) * 0.4), var(--text-3xl));
     line-height: var(--leading-snug);
-    overflow-wrap: anywhere;
     transition: background-size var(--duration-slow) var(--ease-out-expo);
+    white-space: nowrap;
 
     &:focus-visible {
         background-size: 100% 2px;
     }
+}
+
+// Mail tag: kept in the text so it survives copying, but not shown
+.contact__email-tag {
+    @include visually-hidden;
 }
 
 .contact__link {

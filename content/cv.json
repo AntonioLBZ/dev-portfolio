@@ -76,19 +76,22 @@
             "title": "Competencias Básicas en Accesibilidad Digital y Web",
             "issuer": "Udemy",
             "issueDate": "08/2025",
-            "credentialId": "UC-b4a6de44-32b2-42a6-b5b0-1b566ca1813d"
+            "credentialId": "UC-b4a6de44-32b2-42a6-b5b0-1b566ca1813d",
+            "credentialUrl": "https://www.udemy.com/certificate/UC-b4a6de44-32b2-42a6-b5b0-1b566ca1813d/"
         },
         {
             "title": "Desarrollo de aplicaciones web con React 19",
             "issuer": "campusMVP",
             "issueDate": "07/2025",
-            "credentialId": "DA2040E8-8BD0-4DBB-AEC8-BC88A6240943"
+            "credentialId": "DA2040E8-8BD0-4DBB-AEC8-BC88A6240943",
+            "credentialUrl": "https://aulas.campusmvp.com/svc/DA2040E8-8BD0-4DBB-AEC8-BC88A6240943"
         },
         {
             "title": "Programación avanzada con JavaScript y ECMAScript",
             "issuer": "campusMVP",
             "issueDate": "06/2025",
-            "credentialId": "70A35983-F5C1-495E-9DD0-B4D4963434BC"
+            "credentialId": "70A35983-F5C1-495E-9DD0-B4D4963434BC",
+            "credentialUrl": "https://aulas.campusmvp.com/svc/70A35983-F5C1-495E-9DD0-B4D4963434BC"
         },
         {
             "title": "Aptis English Certificate C - Score 166",
@@ -100,19 +103,22 @@
             "title": "Git: Control de código fuente para programadores",
             "issuer": "campusMVP",
             "issueDate": "03/2025",
-            "credentialId": "FFD39F00-91E3-4F42-B0F1-7856F7F5315B"
+            "credentialId": "FFD39F00-91E3-4F42-B0F1-7856F7F5315B",
+            "credentialUrl": "https://aulas.campusmvp.com/svc/FFD39F00-91E3-4F42-B0F1-7856F7F5315B"
         },
         {
             "title": "Angular moderno: aplicaciones web con Angular 17",
             "issuer": "TrainingIT",
             "issueDate": "06/2024",
-            "credentialId": "e7S3XipDFY"
+            "credentialId": "e7S3XipDFY",
+            "credentialUrl": "https://cursos.trainingit.es/mod/customcert/verify_certificate.php?code=e7S3XipDFY"
         },
         {
             "title": "Inteligencia Artificial y Deep Learning – Redes Neuronales con Tensorflow 2",
             "issuer": "TrainingIT",
             "issueDate": "11/2023",
-            "credentialId": "OToAR5ahZG"
+            "credentialId": "OToAR5ahZG",
+            "credentialUrl": "https://cursos.trainingit.es/mod/customcert/verify_certificate.php?code=OToAR5ahZG"
         },
         {
             "title": "CCNA: Routing and Switching",
