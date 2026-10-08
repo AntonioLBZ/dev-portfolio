@@ -1,0 +1,5 @@
+// Programmatic focus targets (<main>, sections) aren't interactive: no ring
+main[tabindex='-1']:focus,
+section[tabindex='-1']:focus {
+    outline: none;
+}

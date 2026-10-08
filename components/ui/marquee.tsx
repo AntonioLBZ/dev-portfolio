@@ -6,30 +6,30 @@ interface MarqueeProps {
     className?: string;
 }
 
-function Track({ items, hidden }: { items: string[]; hidden?: boolean }) {
+function Track({ items, clone }: { items: string[]; clone?: boolean }) {
+    const classes = [styles.marquee__track, clone && styles['marquee__track--clone']].filter(Boolean).join(' ');
+
     return (
-        <ul className={styles.marquee__track} aria-hidden={hidden || undefined}>
+        <ul className={classes}>
             {items.map((item) => (
                 <li key={item} className={styles.marquee__item}>
                     {item}
-                    <span className={styles.marquee__sep} aria-hidden="true">
-                        ✦
-                    </span>
+                    <span className={styles.marquee__sep}>✦</span>
                 </li>
             ))}
         </ul>
     );
 }
 
-// CSS-only infinite horizontal loop; the list is duplicated
+// CSS-only infinite horizontal loop; the list is duplicated. Decorative: the items are listed elsewhere
 export function Marquee({ items, reverse = false, className }: MarqueeProps) {
     const classes = [styles.marquee, reverse && styles['marquee--reverse'], className].filter(Boolean).join(' ');
 
     return (
-        <div className={classes}>
+        <div className={classes} aria-hidden="true">
             <div className={styles.marquee__inner}>
                 <Track items={items} />
-                <Track items={items} hidden />
+                <Track items={items} clone />
             </div>
         </div>
     );

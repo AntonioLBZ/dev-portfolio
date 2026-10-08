@@ -16,6 +16,11 @@
     transform: translateY(-100%);
 }
 
+// Keyboard focus inside the header keeps it on screen
+.header:has(:focus-visible) {
+    transform: none;
+}
+
 .header__inner {
     @include container;
 

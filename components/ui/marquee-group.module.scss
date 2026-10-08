@@ -1,0 +1,38 @@
+.marquee-group {
+    display: grid;
+    gap: var(--space-sm);
+}
+
+// Nothing to pause under reduced motion, so it only shows when the marquee moves
+.marquee-group__toggle {
+    @include hover {
+        border-color: var(--color-text-muted);
+        color: var(--color-text);
+    }
+
+    @include label;
+
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    display: none;
+    gap: var(--space-2xs);
+    justify-self: start;
+    min-block-size: 2.5rem;
+    padding-inline: var(--space-sm);
+
+    @media (prefers-reduced-motion: no-preference) {
+        display: inline-flex;
+        transition:
+            border-color var(--duration-fast) ease,
+            color var(--duration-fast) ease;
+    }
+}
+
+.marquee-group__icon {
+    block-size: 0.625em;
+    flex-shrink: 0;
+    inline-size: 0.625em;
+}

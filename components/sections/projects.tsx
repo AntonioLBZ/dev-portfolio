@@ -30,17 +30,23 @@ export function Projects() {
                             href={`/projects/${project.slug}`}
                             className={styles.projects__link}
                             data-accent={project.accent}
+                            aria-labelledby={`project-${project.slug}-title`}
+                            aria-describedby={`project-${project.slug}-summary`}
                         >
                             <ViewTransition name={`project-cover-${project.slug}`} share="morph" default="none">
                                 <ProjectCover project={project} className={styles.projects__cover} />
                             </ViewTransition>
                             <div className={styles.projects__meta}>
                                 <ViewTransition name={`project-title-${project.slug}`} share="morph" default="none">
-                                    <h3 className={styles.projects__title}>{project.title}</h3>
+                                    <h3 id={`project-${project.slug}-title`} className={styles.projects__title}>
+                                        {project.title}
+                                    </h3>
                                 </ViewTransition>
                                 <span className={styles.projects__year}>{project.year}</span>
                             </div>
-                            <p className={styles.projects__summary}>{project.summary}</p>
+                            <p id={`project-${project.slug}-summary`} className={styles.projects__summary}>
+                                {project.summary}
+                            </p>
                             <ul className={styles.projects__stack} aria-label="Tecnologías">
                                 {project.stack.map((tech) => (
                                     <li key={tech}>{tech}</li>

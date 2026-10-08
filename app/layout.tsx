@@ -2,10 +2,13 @@ import type { Metadata, Viewport } from 'next';
 import { Analytics } from '@vercel/analytics/next';
 import 'lenis/dist/lenis.css';
 import './globals.scss';
+import '../components/layout/anchor-focus.scss';
 import { geist, geistMono, instrumentSerif } from './fonts';
+import { AnchorFocus } from '@/components/layout/anchor-focus';
 import { BackToTop } from '@/components/layout/back-to-top';
 import { Footer } from '@/components/layout/footer';
 import { Header } from '@/components/layout/header';
+import { MAIN_ID, SkipLink } from '@/components/layout/skip-link';
 import { BackgroundField } from '@/components/motion/background-field';
 import { SmoothScroll } from '@/components/motion/smooth-scroll';
 import { getProfile } from '@/lib/content';
@@ -32,15 +35,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="es" className={`${instrumentSerif.variable} ${geist.variable} ${geistMono.variable}`}>
             <body>
+                <SkipLink />
                 <BackgroundField />
                 <noscript>
                     <style>{'[data-reveal]{opacity:1}'}</style>
                 </noscript>
                 <SmoothScroll>
                     <Header links={socialLinks} />
-                    <main>{children}</main>
+                    <main id={MAIN_ID} tabIndex={-1}>
+                        {children}
+                    </main>
                     <Footer />
                     <BackToTop />
+                    <AnchorFocus />
                 </SmoothScroll>
                 <Analytics />
             </body>

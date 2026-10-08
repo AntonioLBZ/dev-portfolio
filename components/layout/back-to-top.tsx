@@ -16,6 +16,7 @@ export function BackToTop() {
             type="button"
             className={[styles['back-to-top'], visible && styles['back-to-top--visible']].filter(Boolean).join(' ')}
             aria-label="Volver arriba"
+            data-back-to-top=""
             tabIndex={visible ? 0 : -1}
             onClick={() => lenis?.scrollTo(0, { duration: 1.4, immediate: reduced })}
         >

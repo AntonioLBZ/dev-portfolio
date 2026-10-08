@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ViewTransition } from 'react';
 import { Reveal } from '@/components/motion/reveal';
+import { ExternalLink } from '@/components/ui/external-link';
 import { ProjectCover } from '@/components/ui/project-cover';
 import { getProject, getProjects } from '@/lib/content';
 import styles from './page.module.scss';
@@ -57,7 +58,7 @@ export default async function ProjectPage({ params }: PageProps<'/projects/[slug
                     ))}
                 </Reveal>
 
-                <Reveal as="aside" stagger={0.1} className={styles.project__aside}>
+                <Reveal stagger={0.1} className={styles.project__aside}>
                     <div>
                         <h2 className={styles.project__label}>Stack</h2>
                         <ul className={styles.project__stack}>
@@ -72,9 +73,7 @@ export default async function ProjectPage({ params }: PageProps<'/projects/[slug
                             <ul className={styles.project__links}>
                                 {links.map((link) => (
                                     <li key={link.href}>
-                                        <a href={link.href} target="_blank" rel="noreferrer">
-                                            {link.label} ↗
-                                        </a>
+                                        <ExternalLink href={link.href}>{link.label}</ExternalLink>
                                     </li>
                                 ))}
                             </ul>

@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useId, useMemo, useRef, useState } from 'react';
+import { createContext, useContext, useEffect, useId, useMemo, useRef, useState } from 'react';
 import styles from './expandable.module.scss';
 
 interface GroupState {
@@ -33,6 +33,28 @@ export function ExpandableItem({ children, details, label, className }: Expandab
     const group = useContext(Group);
     const id = useId();
     const input = useRef('');
+    // Set by Escape, cleared when the pointer re-enters or leaves: hover must not reopen what was just dismissed
+    const dismissed = useRef(false);
+    const trigger = useRef<HTMLButtonElement>(null);
+    const panel = useRef<HTMLDivElement>(null);
+    const open = group?.openId === id;
+    const setOpen = group?.setOpenId;
+
+    // WCAG 1.4.13: hover/focus content can be dismissed without moving the pointer
+    useEffect(() => {
+        if (!open || !setOpen) return;
+
+        const onKeyDown = (e: KeyboardEvent) => {
+            if (e.key !== 'Escape') return;
+            dismissed.current = true;
+            // The panel turns inert on close: keep focus from falling back to <body>
+            if (panel.current?.contains(document.activeElement)) trigger.current?.focus();
+            setOpen((current) => (current === id ? null : current));
+        };
+
+        window.addEventListener('keydown', onKeyDown);
+        return () => window.removeEventListener('keydown', onKeyDown);
+    }, [open, id, setOpen]);
 
     if (!group || !details) {
         return (
@@ -42,8 +64,7 @@ export function ExpandableItem({ children, details, label, className }: Expandab
         );
     }
 
-    const { openId, setOpenId, pointerRef } = group;
-    const open = openId === id;
+    const { pointerRef, setOpenId } = group;
     const panelId = `${id}-panel`;
 
     const onPointerMove = (e: React.PointerEvent) => {
@@ -51,10 +72,11 @@ export function ExpandableItem({ children, details, label, className }: Expandab
         const { x, y } = pointerRef.current;
         pointerRef.current = { x: e.clientX, y: e.clientY };
         // A still pointer with content sliding under it (a neighbour collapsing) must not open anything
-        if (e.clientX !== x || e.clientY !== y) setOpenId(id);
+        if (!dismissed.current && (e.clientX !== x || e.clientY !== y)) setOpenId(id);
     };
 
     const onPointerLeave = (e: React.PointerEvent) => {
+        dismissed.current = false;
         if (e.pointerType === 'mouse') setOpenId((current) => (current === id ? null : current));
     };
 
@@ -64,10 +86,17 @@ export function ExpandableItem({ children, details, label, className }: Expandab
     };
 
     return (
-        <li className={className} data-open={open} onPointerMove={onPointerMove} onPointerLeave={onPointerLeave}>
+        <li
+            className={className}
+            data-open={open}
+            onPointerEnter={() => (dismissed.current = false)}
+            onPointerMove={onPointerMove}
+            onPointerLeave={onPointerLeave}
+        >
             <div className={`${styles.expandable__header} ${styles['expandable__header--toggle']}`}>
                 {children}
                 <button
+                    ref={trigger}
                     type="button"
                     className={styles.expandable__trigger}
                     aria-controls={panelId}
@@ -80,7 +109,7 @@ export function ExpandableItem({ children, details, label, className }: Expandab
                     <span className={styles.expandable__icon} aria-hidden="true" />
                 </button>
             </div>
-            <div id={panelId} className={styles.expandable__panel} data-open={open} inert={!open}>
+            <div ref={panel} id={panelId} className={styles.expandable__panel} data-open={open} inert={!open}>
                 <div className={styles.expandable__inner}>
                     <div className={styles.expandable__content}>{details}</div>
                 </div>

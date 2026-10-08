@@ -46,6 +46,18 @@ pnpm lint:css:fix
 - Every animation uses `gsap.matchMedia()` with a reduced-motion branch where content is fully visible. Animate only `transform`/`opacity`.
 - Route transitions: React `<ViewTransition name share="morph" default="none">` on project cover/title in both the card and the detail page. CSS in `styles/_base.scss`.
 
+## Accessibility (WCAG 2.2 AA)
+
+- Never hide content before it is revealed with `visibility`/`autoAlpha`/`display`: it would leave the Tab order and the a11y tree. `Reveal` animates `opacity` + `y` only, and a `focusin` listener finishes the reveal so a focused element is never left invisible.
+- External links use `components/ui/external-link.tsx` (target/rel, decorative arrow, visually hidden "se abre en una pestaña nueva"), never a bare `target="_blank"`.
+- `components/layout/skip-link.tsx` targets `<main id="contenido" tabIndex={-1}>`. `components/layout/anchor-focus.tsx` focuses the target of in-page `#hash` links (and `/#id` after a route change), because Lenis scrolls but leaves focus behind. Sections get `tabindex="-1"` on demand; their ring is suppressed in `anchor-focus.scss`.
+- Header: it hides on scroll down but `.header:has(:focus-visible)` keeps it on screen. While the menu is open `main`, `footer` and anything marked `data-back-to-top`/`data-skip-link` are `inert` (add new fixed or floating UI to that list), Tab cycles inside the header, arrows/Home/End move between menu links and Escape closes it, returning focus to the toggle. Floating UI uses `--z-float`, below the header and menu.
+- Anything that moves by itself for more than 5s needs a pause control (`MarqueeGroup`, WCAG 2.2.2). Static is the default CSS; motion is added only inside `@media (prefers-reduced-motion: no-preference)`.
+- `SplitText` on anything but a heading takes `aria: 'none'`: its default puts an invalid `aria-label` on a `<p>` and `aria-hidden` on every word. Headings keep the default.
+- Contrast: `--color-text-muted` is 5.6:1 and `--color-text-subtle` 4.1:1 (large text only, e.g. the About reveal). Keep new text colours at 4.5:1 on `--color-bg` (3:1 for large text).
+- Expandable details also dismiss with Escape (hover and keyboard); their +/× icon shows on touch devices and on `:focus-visible`.
+- There are no a11y tests: audit with axe-core (WCAG 2.2 AA tags) in Chrome after scrolling the whole page, so every reveal has run.
+
 ## SCSS
 
 - `styles/_tokens.scss`: all design tokens as CSS custom properties (`--color-*`, `--font-*`, `--text-*` fluid scale, `--space-*`, `--radius-*`, `--ease-*`, `--duration-*`, `--z-*`). Use tokens, never hardcode values.

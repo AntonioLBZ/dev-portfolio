@@ -4,6 +4,7 @@ import { useLenis } from 'lenis/react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { ExternalLink } from '@/components/ui/external-link';
 import { DURATION, EASE, gsap, useGSAP } from '@/lib/motion/gsap';
 import { useReducedMotion } from '@/lib/motion/use-reduced-motion';
 import { NAV_ITEMS } from '@/lib/nav';
@@ -20,6 +21,7 @@ export function Header({ links }: HeaderProps) {
     const [open, setOpen] = useState(false);
     const [hidden, setHidden] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const headerRef = useRef<HTMLElement>(null);
     const menuRef = useRef<HTMLDivElement>(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
     const tl = useRef<gsap.core.Timeline>(null);
@@ -32,7 +34,8 @@ export function Header({ links }: HeaderProps) {
         setHidden(direction === 1 && scroll > 200);
     });
 
-    // Menu open/close timeline (reduced motion falls back to the --open class)
+    // Menu open/close timeline (reduced motion falls back to the --open class).
+    // Links fade with opacity only: `visibility: hidden` would make them unfocusable while the menu opens
     useGSAP(
         () => {
             const menu = menuRef.current;
@@ -41,31 +44,33 @@ export function Header({ links }: HeaderProps) {
 
             if (open) {
                 hasOpened.current = true;
+                gsap.set(menu, { visibility: 'visible' });
                 tl.current = gsap
                     .timeline()
                     .fromTo(
                         menu,
-                        { autoAlpha: 0, y: -24 },
-                        { autoAlpha: 1, duration: DURATION.base, ease: 'power2.out', y: 0 }
+                        { opacity: 0, y: -24 },
+                        { duration: DURATION.base, ease: 'power2.out', opacity: 1, y: 0 }
                     )
                     .fromTo(
                         '[data-menu-item]',
-                        { autoAlpha: 0, y: -32 },
-                        { autoAlpha: 1, duration: DURATION.slow, ease: EASE.outExpo, stagger: 0.05, y: 0 },
+                        { opacity: 0, y: -32 },
+                        { duration: DURATION.slow, ease: EASE.outExpo, opacity: 1, stagger: 0.05, y: 0 },
                         '-=0.2'
                     )
-                    .fromTo('[data-menu-foot]', { autoAlpha: 0 }, { autoAlpha: 1, duration: DURATION.base }, '-=0.5');
+                    .fromTo('[data-menu-foot]', { opacity: 0 }, { duration: DURATION.base, opacity: 1 }, '-=0.5');
             } else if (hasOpened.current) {
                 tl.current = gsap
-                    .timeline()
-                    .to('[data-menu-item]', { autoAlpha: 0, duration: 0.35, ease: 'power2.in', stagger: 0.03, y: 32 })
-                    .to('[data-menu-foot]', { autoAlpha: 0, duration: 0.25 }, '<')
-                    .to(menu, { autoAlpha: 0, duration: DURATION.base, ease: 'power2.in', y: 24 }, '-=0.15');
+                    .timeline({ onComplete: () => gsap.set(menu, { visibility: 'hidden' }) })
+                    .to('[data-menu-item]', { duration: 0.35, ease: 'power2.in', opacity: 0, stagger: 0.03, y: 32 })
+                    .to('[data-menu-foot]', { duration: 0.25, opacity: 0 }, '<')
+                    .to(menu, { duration: DURATION.base, ease: 'power2.in', opacity: 0, y: 24 }, '-=0.15');
             }
         },
         { dependencies: [open, reduced], scope: menuRef }
     );
 
+    // Runs after the layout effect above, so the menu is already visible (GSAP set or --open class)
     useEffect(() => {
         if (open) {
             lenis?.stop();
@@ -75,18 +80,57 @@ export function Header({ links }: HeaderProps) {
         }
     }, [open, lenis]);
 
+    // The menu covers the page: keep everything behind it out of Tab order and the a11y tree
+    useEffect(() => {
+        if (!open) return;
+        const covered = document.querySelectorAll<HTMLElement>('main, footer, [data-back-to-top], [data-skip-link]');
+        covered.forEach((el) => (el.inert = true));
+        return () => covered.forEach((el) => (el.inert = false));
+    }, [open]);
+
+    // Open menu keyboard: Escape closes, Tab cycles inside the header, arrows/Home/End walk the menu links
     useEffect(() => {
         if (!open) return;
         const onKey = (e: KeyboardEvent) => {
-            if (e.key !== 'Escape') return;
-            setOpen(false);
-            buttonRef.current?.focus();
+            if (e.key === 'Escape') {
+                setOpen(false);
+                buttonRef.current?.focus();
+                return;
+            }
+
+            if (e.key === 'Tab') {
+                const tabbables = [...(headerRef.current?.querySelectorAll<HTMLElement>('a[href], button') ?? [])];
+                const first = tabbables[0];
+                const last = tabbables[tabbables.length - 1];
+                if (!first || !last) return;
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+                return;
+            }
+
+            const links = [...(menuRef.current?.querySelectorAll<HTMLElement>('a') ?? [])];
+            const index = links.indexOf(document.activeElement as HTMLElement);
+            if (index === -1) return;
+            const target: Record<string, number> = {
+                ArrowDown: index + 1,
+                ArrowUp: index - 1,
+                End: links.length - 1,
+                Home: 0,
+            };
+            if (!(e.key in target)) return;
+            e.preventDefault();
+            links[(target[e.key] + links.length) % links.length].focus();
         };
         window.addEventListener('keydown', onKey);
         return () => window.removeEventListener('keydown', onKey);
     }, [open]);
 
-    // Closes the menu, then scrolls to the section (or routes home)
+    // Closes the menu, then scrolls to the section (or routes home). <AnchorFocus> moves the focus
     const goTo = (e: React.MouseEvent, id: string) => {
         e.preventDefault();
         setOpen(false);
@@ -107,7 +151,7 @@ export function Header({ links }: HeaderProps) {
         .join(' ');
 
     return (
-        <header className={className}>
+        <header ref={headerRef} className={className}>
             <div className={styles.header__inner}>
                 <Link href="/" className={styles.header__logo} aria-label="Inicio" onClick={() => setOpen(false)}>
                     AL<span className={styles.header__dot}>.</span>
@@ -152,9 +196,7 @@ export function Header({ links }: HeaderProps) {
                     <ul className={styles.header__foot} data-menu-foot="">
                         {links.map((link) => (
                             <li key={link.href}>
-                                <a href={link.href} target="_blank" rel="noreferrer">
-                                    {link.label} ↗
-                                </a>
+                                <ExternalLink href={link.href}>{link.label}</ExternalLink>
                             </li>
                         ))}
                     </ul>

@@ -25,19 +25,27 @@ export function Reveal({ children, as: Tag = 'div', className, stagger, delay = 
 
             mm.add(MOTION_QUERY.ok, () => {
                 gsap.set(el, { opacity: 1 });
-                gsap.fromTo(
+                // Opacity only: `visibility: hidden` would drop the content from Tab order and the a11y tree
+                const tween = gsap.fromTo(
                     targets,
-                    { autoAlpha: 0, y },
+                    { opacity: 0, y },
                     {
-                        autoAlpha: 1,
                         delay,
                         duration: DURATION.reveal,
                         ease: EASE.outExpo,
+                        opacity: 1,
                         scrollTrigger: { once: true, start: 'top 88%', trigger: el },
                         stagger,
                         y: 0,
                     }
                 );
+                // Focus can land inside before the trigger fires: finish the reveal so it is never left invisible
+                const revealNow = () => {
+                    tween.scrollTrigger?.kill(false, true);
+                    tween.progress(1);
+                };
+                el.addEventListener('focusin', revealNow, { once: true });
+                return () => el.removeEventListener('focusin', revealNow);
             });
             mm.add(MOTION_QUERY.reduce, () => {
                 gsap.set(el, { opacity: 1 });

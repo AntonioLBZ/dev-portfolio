@@ -27,7 +27,7 @@
         transform var(--duration-base) var(--ease-out-expo),
         border-color var(--duration-fast) ease,
         color var(--duration-fast) ease;
-    z-index: var(--z-header);
+    z-index: var(--z-float);
 
     svg {
         block-size: 1.25rem;

@@ -14,7 +14,8 @@ export function AboutText({ children, className }: { children: string; className
             const mm = gsap.matchMedia();
 
             mm.add(MOTION_QUERY.ok, () => {
-                const split = SplitText.create(el, { type: 'words' });
+                // aria 'none': keep the paragraph as plain readable text (no aria-label / aria-hidden words)
+                const split = SplitText.create(el, { aria: 'none', tag: 'span', type: 'words' });
                 gsap.fromTo(
                     split.words,
                     { color: 'var(--color-text-subtle)' },

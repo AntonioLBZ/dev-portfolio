@@ -1,5 +1,6 @@
 import { Reveal } from '@/components/motion/reveal';
 import { ExpandableGroup, ExpandableItem } from '@/components/ui/expandable';
+import { ExternalLink } from '@/components/ui/external-link';
 import { SectionHeader } from '@/components/ui/section-header';
 import section from '@/components/ui/section.module.scss';
 import { formatDate, getCertifications, getEducation, getLanguages } from '@/lib/content';
@@ -68,14 +69,12 @@ export function Education() {
                                                     </p>
                                                 )}
                                                 {cert.credentialUrl && (
-                                                    <a
+                                                    <ExternalLink
                                                         href={cert.credentialUrl}
-                                                        target="_blank"
-                                                        rel="noreferrer"
                                                         className={styles.education__link}
                                                     >
-                                                        Ver credencial ↗
-                                                    </a>
+                                                        Ver credencial
+                                                    </ExternalLink>
                                                 )}
                                             </>
                                         )

@@ -6,9 +6,7 @@
 
 // Leaves room for the icon
 .expandable__header--toggle {
-    @include touch {
-        padding-inline-end: var(--space-lg);
-    }
+    padding-inline-end: var(--space-lg);
 }
 
 // Covers the header so the whole row is the touch target
@@ -18,34 +16,42 @@
     position: absolute;
 }
 
-// Plus that turns into a cross: only where there is no hover to hint at the details
+// Plus that turns into a cross. Without hover to hint at the details it is always shown;
+// with hover it appears only on keyboard focus
 .expandable__icon {
-    @include touch {
-        block-size: var(--space-sm);
-        color: var(--color-text-muted);
-        inline-size: var(--space-sm);
-        inset: var(--space-3xs) 0 auto auto;
+    block-size: var(--space-sm);
+    color: var(--color-text-muted);
+    inline-size: var(--space-sm);
+    inset: var(--space-3xs) 0 auto auto;
+    position: absolute;
+
+    &::before,
+    &::after {
+        background-color: currentcolor;
+        block-size: 1px;
+        content: '';
+        inset: 50% 0 auto;
         position: absolute;
+    }
 
-        &::before,
-        &::after {
-            background-color: currentcolor;
-            block-size: 1px;
-            content: '';
-            inset: 50% 0 auto;
-            position: absolute;
-        }
+    &::after {
+        rotate: 90deg;
+    }
 
-        &::after {
-            rotate: 90deg;
-        }
+    @media (hover: hover) and (pointer: fine) {
+        opacity: 0;
     }
 
     @media (prefers-reduced-motion: no-preference) {
         transition:
             color var(--duration-base) ease,
+            opacity var(--duration-base) ease,
             rotate var(--duration-base) var(--ease-out-expo);
     }
+}
+
+.expandable__trigger:focus-visible .expandable__icon {
+    opacity: 1;
 }
 
 .expandable__trigger[aria-expanded='true'] .expandable__icon {

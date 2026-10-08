@@ -1,3 +1,4 @@
+import { ExternalLink } from '@/components/ui/external-link';
 import { SectionHeader } from '@/components/ui/section-header';
 import { Magnetic } from '@/components/ui/magnetic';
 import { Reveal } from '@/components/motion/reveal';
@@ -40,12 +41,12 @@ export function Contact() {
                     </a>
                 </Magnetic>
                 <div className={styles.contact__social}>
-                    <a href={github} target="_blank" rel="noreferrer" className={styles.contact__link}>
-                        GitHub ↗
-                    </a>
-                    <a href={linkedin} target="_blank" rel="noreferrer" className={styles.contact__link}>
-                        LinkedIn ↗
-                    </a>
+                    <ExternalLink href={github} className={styles.contact__link}>
+                        GitHub
+                    </ExternalLink>
+                    <ExternalLink href={linkedin} className={styles.contact__link}>
+                        LinkedIn
+                    </ExternalLink>
                 </div>
             </Reveal>
         </section>

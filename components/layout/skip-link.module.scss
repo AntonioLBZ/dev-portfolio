@@ -1,0 +1,17 @@
+// Parked above the viewport until it receives focus
+.skip-link {
+    background-color: var(--color-text);
+    border-radius: var(--radius-sm);
+    color: var(--color-bg);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    inset: var(--space-sm) auto auto var(--gutter);
+    padding: var(--space-xs) var(--space-sm);
+    position: fixed;
+    transform: translateY(-200%);
+    z-index: calc(var(--z-overlay) + 1);
+}
+
+.skip-link:focus {
+    transform: none;
+}

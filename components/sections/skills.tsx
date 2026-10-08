@@ -1,5 +1,6 @@
 import { Reveal } from '@/components/motion/reveal';
 import { Marquee } from '@/components/ui/marquee';
+import { MarqueeGroup } from '@/components/ui/marquee-group';
 import { SectionHeader } from '@/components/ui/section-header';
 import section from '@/components/ui/section.module.scss';
 import { getSkills } from '@/lib/content';
@@ -32,10 +33,10 @@ export function Skills() {
                 }
             />
 
-            <div className={styles.skills__marquees}>
+            <MarqueeGroup className={styles.skills__marquees}>
                 <Marquee items={rowOne} />
                 <Marquee items={rowTwo} reverse />
-            </div>
+            </MarqueeGroup>
 
             <Reveal stagger={0.1} className={styles.skills__grid}>
                 {categories.map((category) => (
