@@ -9,8 +9,14 @@
 
 .projects__item {
     @include mq('lg') {
+        // Stagger that spills into the gap below instead of growing the row
         &:nth-child(even) {
+            margin-bottom: calc(-1 * var(--space-2xl));
             margin-top: var(--space-2xl);
+        }
+
+        &:nth-child(even):last-child {
+            margin-bottom: 0;
         }
     }
 }
