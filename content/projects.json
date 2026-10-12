@@ -5,7 +5,7 @@
         "summary": "Calendario semanal con los estrenos de los animes que estás viendo.",
         "description": [
             "SPA que muestra, día a día, cuándo se emiten los episodios de los animes que sigues. Basta con introducir tu usuario de AniList, Kitsu o MyAnimeList, sin registro ni login.",
-            "Ajustes persistentes en local: tema claro/oscuro/sistema, filtros de contenido, días vacíos, primer día de la semana y formato de hora. Disponible en español e inglés.",
+            "Ajustes persistentes en local: tema claro/oscuro/sistema, filtros de contenido, días vacíos, primer día de la semana y formato de hora. Disponible en español, inglés, francés y alemán.",
             "Las peticiones a MyAnimeList pasan por un proxy en servidor para no exponer las credenciales del cliente."
         ],
         "year": "2026",
@@ -15,6 +15,39 @@
         "links": {
             "repo": "https://github.com/AntonioLBZ/spa-anicalendar",
             "live": "https://anicalendar-lbz.vercel.app/es"
+        },
+        "featured": true
+    },
+    {
+        "slug": "hoardex",
+        "title": "Hoardex",
+        "summary": "Dashboard de tu biblioteca de Steam: horas jugadas, backlog y juegos más jugados.",
+        "description": [
+            "SPA que convierte un perfil de Steam en un dashboard con gráficos animados: juegos por estado de backlog, los más jugados y su peso en las horas totales, y la distribución por año de última partida y por horas jugadas.",
+            "Vista de biblioteca con portadas, filtros por estado, búsqueda y orden guardados en la URL. Incluye una demo con datos ficticios. Disponible en varios idiomas y temas.",
+            "Si inicias sesión con Steam (es opcional y solo comparte tu SteamID) puedes gestionar las categorías: crearlas, editarlas o borrarlas, y mover cada juego de una a otra arrastrándolo o desde su tarjeta. También puedes activar un historial diario de horas jugadas.",
+            "La API está hecha con Hono y desplegada en Vercel. Cachea las respuestas en Upstash Redis y con limitación de las peticiones diarias para no agotar la cuota de Steam. Las cuentas se guardan en Neon Postgres."
+        ],
+        "year": "2026",
+        "role": "Diseño y desarrollo",
+        "stack": [
+            "Vite",
+            "React 19",
+            "TypeScript",
+            "TanStack Router",
+            "TanStack Query",
+            "Recharts",
+            "GSAP",
+            "SCSS",
+            "Hono",
+            "Upstash Redis",
+            "Neon Postgres",
+            "Vitest"
+        ],
+        "accent": "#2dd4bf",
+        "links": {
+            "repo": "https://github.com/AntonioLBZ/spa-hoardex",
+            "live": "https://hoardex.vercel.app"
         },
         "featured": true
     },
