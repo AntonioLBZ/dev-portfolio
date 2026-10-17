@@ -30,7 +30,7 @@ pnpm lint:css:fix
 - `@/*` resolves to the **repo root** (no `src/`).
 - Routes (`app/`, no i18n): `/` (one-page home built from `components/sections/*`), `/projects/[slug]` (static, `generateStaticParams`, `dynamicParams = false`).
 - Content lives in JSON and is read **only** through `lib/content.ts` getters:
-    - `content/cv.json` (typed by `types/cv.ts`) → profile, experience, education, skills… `getProfile()` deliberately omits phone, address and birth date. A certification may carry an optional `credentialUrl` (shown as "Ver credencial" next to `credentialId` when expanded).
+    - `content/cv.json` (typed by `types/cv.ts`) → profile, experience, education, skills… `getProfile()` only exposes city and country from `address`. The repo is public: never add private data (phone, birth date, street address). A certification may carry an optional `credentialUrl` (shown as "Ver credencial" next to `credentialId` when expanded).
     - `content/projects.json` (typed by `types/project.ts`) → projects. `placeholder: true` marks example entries; `cover` is optional (a gradient from `accent` is generated otherwise).
 - Server components by default; only motion wrappers and `components/ui/expandable.tsx` are `'use client'`.
 

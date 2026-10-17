@@ -51,8 +51,8 @@ Dependencies are pinned to exact versions. pnpm 11 ignores `save-exact` in `.npm
 
 All content lives in JSON and is read only through the getters in `lib/content.ts`:
 
-- `content/cv.json` (typed by `types/cv.ts`): profile, experience, education, skills. `getProfile()` deliberately omits
-  phone, address and birth date.
+- `content/cv.json` (typed by `types/cv.ts`): profile, experience, education, skills. `getProfile()` only exposes city and
+  country from `address`.
 - `content/projects.json` (typed by `types/project.ts`): projects. `placeholder: true` marks example entries and
   `featured: true` shows the project on the home. `cover` is optional: without it, a gradient generated from `accent` is
   used.
