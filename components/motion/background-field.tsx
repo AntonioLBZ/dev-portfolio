@@ -157,7 +157,8 @@ export function BackgroundField() {
             const follow = 1 - Math.exp(-dt * 10);
             state.pointer.x += (target.x - state.pointer.x) * follow;
             state.pointer.y += (target.y - state.pointer.y) * follow;
-            state.pointer.strength += ((target.active ? 1 : 0) - state.pointer.strength) * (1 - Math.exp(-dt * 5));
+            const strengthTarget = target.active ? 1 : 0;
+            state.pointer.strength += (strengthTarget - state.pointer.strength) * (1 - Math.exp(-dt * 5));
 
             sincePick += dt;
             if (sincePick > 0.15) {
@@ -175,9 +176,12 @@ export function BackgroundField() {
 
             state.ripples = state.ripples.filter((ripple) => state.time - ripple.start < RIPPLE_LIFE);
 
-            // Idle: only the slow drift is left, so render fewer frames
+            // Idle: only the slow drift is left, so render fewer frames. A cursor at rest is idle too
             sinceRender += dt;
-            const busy = state.energy > 0.01 || state.ripples.length > 0 || state.pointer.strength > 0.01 || tintMoving;
+            const pointerSettling =
+                Math.abs(strengthTarget - state.pointer.strength) > 0.01 ||
+                Math.hypot(target.x - state.pointer.x, target.y - state.pointer.y) > 0.5;
+            const busy = state.energy > 0.01 || state.ripples.length > 0 || pointerSettling || tintMoving;
             if (!busy && sinceRender < IDLE_FRAME) return;
             sinceRender = 0;
             field.render(state);
