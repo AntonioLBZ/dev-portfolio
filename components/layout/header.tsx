@@ -19,6 +19,14 @@ export function Header({ links }: HeaderProps) {
     const router = useRouter();
     const isHome = pathname === '/';
     const [open, setOpen] = useState(false);
+
+    // Any route change closes the menu, including browser back/forward
+    const [menuPath, setMenuPath] = useState(pathname);
+    if (pathname !== menuPath) {
+        setMenuPath(pathname);
+        setOpen(false);
+    }
+
     const [hidden, setHidden] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const headerRef = useRef<HTMLElement>(null);
