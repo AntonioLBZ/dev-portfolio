@@ -13,6 +13,10 @@ import { BackgroundField } from '@/components/motion/background-field';
 import { SmoothScroll } from '@/components/motion/smooth-scroll';
 import { getProfile } from '@/lib/content';
 
+// Marks the page as script-enabled so `[data-reveal]` is hidden only then (see styles/_base.scss).
+// The mark is dropped after 5s: a bundle that never loads must not leave the content invisible
+const JS_FLAG = `(function(d){d.classList.add('js');setTimeout(function(){d.classList.remove('js')},5000)})(document.documentElement)`;
+
 const profile = getProfile();
 const socialLinks = [
     { href: profile.github, label: 'GitHub' },
@@ -33,13 +37,17 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="es" className={`${instrumentSerif.variable} ${geist.variable} ${geistMono.variable}`}>
+        <html
+            lang="es"
+            className={`${instrumentSerif.variable} ${geist.variable} ${geistMono.variable}`}
+            suppressHydrationWarning
+        >
+            <head>
+                <script dangerouslySetInnerHTML={{ __html: JS_FLAG }} />
+            </head>
             <body>
                 <SkipLink />
                 <BackgroundField />
-                <noscript>
-                    <style>{'[data-reveal]{opacity:1}'}</style>
-                </noscript>
                 <SmoothScroll>
                     <Header links={socialLinks} />
                     <main id={MAIN_ID} tabIndex={-1}>

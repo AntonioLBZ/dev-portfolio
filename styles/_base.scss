@@ -36,14 +36,11 @@ body::after {
     outline-offset: 3px;
 }
 
-// Initial state of animated elements; avoids a flash before hydration
-[data-reveal] {
-    opacity: 0;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    [data-reveal] {
-        opacity: 1;
+// Initial state of animated elements; avoids a flash before hydration.
+// Only under `html.js` (set by the layout's inline script): without scripts the content stays visible
+@media (prefers-reduced-motion: no-preference) {
+    .js [data-reveal] {
+        opacity: 0;
     }
 }
 
