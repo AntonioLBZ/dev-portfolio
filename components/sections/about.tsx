@@ -1,12 +1,20 @@
 import { Reveal } from '@/components/motion/reveal';
 import { SectionHeader } from '@/components/ui/section-header';
 import section from '@/components/ui/section.module.scss';
-import { getProfile } from '@/lib/content';
+import { getEmployers, getProfile } from '@/lib/content';
 import styles from './about.module.scss';
 import { AboutText } from './about-text';
 
+const list = new Intl.ListFormat('es', { type: 'conjunction' });
+
 export function About() {
-    const { about } = getProfile();
+    const { about, city } = getProfile();
+    const { current, previous } = getEmployers();
+    const career = current
+        ? previous.length > 0
+            ? `Pasé por ${list.format(previous)} y ahora trabajo en ${current}`
+            : `Trabajo en ${current}`
+        : null;
 
     return (
         <section id="sobre-mi" className={section.section}>
@@ -24,8 +32,7 @@ export function About() {
                 <AboutText className={styles.about__text}>{about}</AboutText>
                 <Reveal className={styles.about__aside}>
                     <p>
-                        Desarrollo frontend desde A Coruña. Pasé por Altia y ahora trabajo en Napptilus Tech Labs,
-                        construyendo interfaces web.
+                        Desarrollo frontend desde {city}.{career && ` ${career}, construyendo interfaces web.`}
                     </p>
                     <p>
                         Me importa que lo que construyo lo pueda usar cualquiera, por eso la accesibilidad forma parte

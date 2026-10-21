@@ -11,11 +11,18 @@ const spanishMonths = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', '
 export interface Profile {
     name: string;
     title: string;
+    city: string;
     location: string;
     email: string;
     linkedin: string;
     github: string;
     about: string;
+}
+
+export interface Employers {
+    // Role without an end date
+    current?: string;
+    previous: string[];
 }
 
 export interface ExperienceGroup {
@@ -30,13 +37,19 @@ export interface ExperienceGroup {
 }
 
 export function getProfile(): Profile {
-    const [locationPart1, , locationPart2] = typedCvData.personalInfo.address.split(', ');
-    const location = `${locationPart1}, ${locationPart2}`;
+    // Address is "city, region, country": only the first and last parts are exposed
+    const parts = typedCvData.personalInfo.address
+        .split(',')
+        .map((part) => part.trim())
+        .filter(Boolean);
+    const city = parts[0] ?? '';
+    const country = parts.length > 1 ? parts[parts.length - 1] : '';
 
     return {
         name: typedCvData.personalInfo.name,
         title: typedCvData.personalInfo.title,
-        location,
+        city,
+        location: [city, country].filter(Boolean).join(', '),
         email: typedCvData.personalInfo.email,
         linkedin: typedCvData.personalInfo.linkedin,
         github: typedCvData.personalInfo.github,
@@ -74,6 +87,14 @@ export function getExperience(): ExperienceGroup[] {
     }
 
     return groups;
+}
+
+export function getEmployers(): Employers {
+    const groups = getExperience();
+    const current = groups.find((group) => group.roles.some((role) => role.endDate === 'Actual'))?.company;
+    const previous = [...new Set(groups.map((group) => group.company).filter((company) => company !== current))];
+
+    return { current, previous };
 }
 
 export function getEducation() {

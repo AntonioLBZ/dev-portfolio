@@ -141,8 +141,29 @@
         ]
     },
     "skills": {
-        "frontend": ["React", "Next.js", "TypeScript", "JavaScript", "Angular", "HTML", "CSS", "SCSS", "Tailwind CSS", "GSAP", "TanStack Query", "React Aria"],
-        "quality": ["Accesibilidad web (WCAG)", "Vitest", "Playwright", "ESLint", "Prettier", "Observabilidad", "Grafana"],
+        "frontend": [
+            "React",
+            "Next.js",
+            "TypeScript",
+            "JavaScript",
+            "Angular",
+            "HTML",
+            "CSS",
+            "SCSS",
+            "Tailwind CSS",
+            "GSAP",
+            "TanStack Query",
+            "React Aria"
+        ],
+        "quality": [
+            "Accesibilidad web (WCAG)",
+            "Vitest",
+            "Playwright",
+            "ESLint",
+            "Prettier",
+            "Observabilidad",
+            "Grafana"
+        ],
         "tools": ["Git", "GitHub", "CI/CD", "pnpm", "Vercel", "Figma", "Jira / Confluence", "Visual Studio Code"],
         "ai": ["Claude Code", "OpenCode", "TensorFlow"],
         "backend": ["Node.js", "REST APIs", "SQL"],

@@ -13,7 +13,7 @@
 
 .header--scrolled {
     backdrop-filter: blur(12px);
-    background-color: rgb(15 14 12 / 70%);
+    background-color: color-mix(in srgb, var(--color-bg) 70%, transparent);
 }
 
 .header--hidden {
