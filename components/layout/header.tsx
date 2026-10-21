@@ -91,7 +91,10 @@ export function Header({ links }: HeaderProps) {
     // The menu covers the page: keep everything behind it out of Tab order and the a11y tree
     useEffect(() => {
         if (!open) return;
-        const covered = document.querySelectorAll<HTMLElement>('main, footer, [data-back-to-top], [data-skip-link]');
+        // Already inert (the hidden back-to-top) stays as it is: closing the menu must not re-enable it
+        const covered = [
+            ...document.querySelectorAll<HTMLElement>('main, footer, [data-back-to-top], [data-skip-link]'),
+        ].filter((el) => !el.inert);
         covered.forEach((el) => (el.inert = true));
         return () => covered.forEach((el) => (el.inert = false));
     }, [open]);

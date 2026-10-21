@@ -80,9 +80,18 @@ export function ExpandableItem({ children, details, label, className }: Expandab
         if (e.pointerType === 'mouse') setOpenId((current) => (current === id ? null : current));
     };
 
-    // Mouse is handled by hover; touch, pen and keyboard toggle
+    // Hover opens and closes for the mouse, so its click only opens (it also revives an item dismissed with Escape).
+    // Touch, pen, keyboard and synthetic clicks (screen readers) toggle. The input source is consumed per click
     const onClick = () => {
-        if (input.current !== 'mouse') setOpenId(open ? null : id);
+        const source = input.current;
+        input.current = '';
+
+        if (source !== 'mouse') {
+            setOpenId(open ? null : id);
+        } else if (!open) {
+            dismissed.current = false;
+            setOpenId(id);
+        }
     };
 
     return (

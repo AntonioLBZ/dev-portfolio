@@ -82,9 +82,12 @@
 }
 
 .expandable__inner {
+    // Room inside the clip for the focus ring of the links in the details; the negative margin keeps the layout
+    margin: 0 calc(var(--space-2xs) * -1) calc(var(--space-2xs) * -1);
     min-block-size: 0;
     opacity: 0;
     overflow: hidden;
+    padding: 0 var(--space-2xs) var(--space-2xs);
 
     @media (prefers-reduced-motion: no-preference) {
         transition: opacity var(--duration-base) ease;
