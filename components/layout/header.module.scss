@@ -1,10 +1,14 @@
 .header {
     inset: 0 0 auto;
     position: fixed;
-    transition:
-        transform var(--duration-slow) var(--ease-out-expo),
-        background-color var(--duration-base) ease;
+    transition: background-color var(--duration-base) ease;
     z-index: var(--z-header);
+
+    @media (prefers-reduced-motion: no-preference) {
+        transition:
+            transform var(--duration-slow) var(--ease-out-expo),
+            background-color var(--duration-base) ease;
+    }
 }
 
 .header--scrolled {
@@ -69,7 +73,10 @@
         content: '';
         inset-inline: 0;
         position: absolute;
-        transition: transform var(--duration-base) var(--ease-out-expo);
+
+        @media (prefers-reduced-motion: no-preference) {
+            transition: transform var(--duration-base) var(--ease-out-expo);
+        }
     }
 
     &::before {

@@ -45,7 +45,9 @@
     margin-bottom: var(--space-2xs);
 
     > * {
-        transition: scale var(--duration-slow) var(--ease-out-expo);
+        @media (prefers-reduced-motion: no-preference) {
+            transition: scale var(--duration-slow) var(--ease-out-expo);
+        }
     }
 }
 

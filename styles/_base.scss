@@ -48,15 +48,30 @@ body::after {
 }
 
 // Route transitions (React ViewTransition)
-::view-transition-old(root),
-::view-transition-new(root) {
-    animation-duration: var(--duration-base);
-    animation-timing-function: var(--ease-out-expo);
+// Lets clicks reach the live page while the overlay animates
+::view-transition {
+    pointer-events: none;
 }
 
-::view-transition-group(*) {
-    animation-duration: var(--duration-slow);
-    animation-timing-function: var(--ease-out-expo);
+@media (prefers-reduced-motion: no-preference) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation-duration: var(--duration-base);
+        animation-timing-function: var(--ease-out-expo);
+    }
+
+    ::view-transition-group(*) {
+        animation-duration: var(--duration-slow);
+        animation-timing-function: var(--ease-out-expo);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(*),
+    ::view-transition-new(*),
+    ::view-transition-group(*) {
+        animation-duration: 0s;
+    }
 }
 
 // Shared-element morph (project cover and title)

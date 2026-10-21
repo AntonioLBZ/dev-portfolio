@@ -10,19 +10,10 @@
 }
 
 .contact__email {
-    @include hover {
-        background-size: 100% 2px;
-    }
-
-    @include reduced-motion {
-        background-size: 100% 2px;
-        transition: none;
-    }
-
     background-image: linear-gradient(var(--color-accent), var(--color-accent));
     background-position: 0 100%;
     background-repeat: no-repeat;
-    background-size: 0% 2px;
+    background-size: 100% 2px;
     font-family: var(--font-display);
 
     // Shrinks to keep the address on one line: container width / (chars × ~0.4em per char in the display font);
@@ -30,10 +21,19 @@
     font-size: clamp(var(--text-xl), 100cqi / (var(--chars) * 0.4), var(--text-3xl));
     line-height: var(--leading-snug);
     overflow-wrap: anywhere;
-    transition: background-size var(--duration-slow) var(--ease-out-expo);
 
-    &:focus-visible {
-        background-size: 100% 2px;
+    // The underline draws in on hover/focus; without motion it is always shown
+    @media (prefers-reduced-motion: no-preference) {
+        @include hover {
+            background-size: 100% 2px;
+        }
+
+        background-size: 0% 2px;
+        transition: background-size var(--duration-slow) var(--ease-out-expo);
+
+        &:focus-visible {
+            background-size: 100% 2px;
+        }
     }
 }
 
