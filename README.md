@@ -3,7 +3,7 @@
 Personal portfolio of a frontend developer (React/TypeScript/CSS): a one-page site with scroll-driven animations and a
 detail page per project. The UI is in Spanish.
 
-**Live:** [antoniolbz.vercel.app](https://antoniolbz.vercel.app)
+**Live:** [albz.app](https://albz.app)
 
 ## Stack
 
@@ -14,7 +14,7 @@ detail page per project. The UI is in Spanish.
   `prefers-reduced-motion`
 - **Linting:** ESLint, Prettier and Stylelint (SCSS)
 - **Package manager:** pnpm
-- **Deployment:** Vercel
+- **Deployment:** Cloudflare Workers (static export)
 
 ## Local development
 
@@ -29,7 +29,7 @@ The app will be available at [http://localhost:3000](http://localhost:3000).
 | ------------------- | --------------------------------------------- |
 | `pnpm dev`          | Dev server on port 3000                       |
 | `pnpm build`        | Production build (type-checks, does not lint) |
-| `pnpm start`        | Serves the production build                   |
+| `pnpm start`        | Serves `out/` with Wrangler (run build first) |
 | `pnpm lint`         | ESLint                                        |
 | `pnpm lint:fix`     | ESLint `--fix`, then Prettier `--write`       |
 | `pnpm lint:css`     | Stylelint on `**/*.scss`                      |

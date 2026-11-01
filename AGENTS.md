@@ -14,7 +14,8 @@ pnpm only. Pin dependencies exactly (no `^`): pnpm 11 ignores `save-exact` in `.
 
 ```bash
 pnpm dev            # dev server on :3000
-pnpm build          # production build (Turbopack, type-checks)
+pnpm build          # production build (Turbopack, type-checks), static export into out/
+pnpm start          # serves out/ with Wrangler (run pnpm build first)
 pnpm lint           # ESLint (eslint-config-next + eslint-config-prettier)
 pnpm lint:fix       # ESLint --fix, then prettier --write .
 pnpm lint:css       # Stylelint on **/*.scss
@@ -32,6 +33,7 @@ pnpm lint:css:fix
 - Content lives in JSON and is read **only** through `lib/content.ts` getters:
     - `content/cv.json` (typed by `types/cv.ts`) → profile, experience, education, skills… `getProfile()` only exposes city and country from `address`. The repo is public: never add private data (phone, birth date, street address). A certification may carry an optional `credentialUrl` (shown as "Ver credencial" next to `credentialId` when expanded).
     - `content/projects.json` (typed by `types/project.ts`) → projects. `placeholder: true` marks example entries; `cover` is optional (a gradient from `accent` is generated otherwise).
+- Static export (`output: 'export'`) served as Cloudflare Workers static assets (`wrangler.jsonc`, deploys from GitHub): no server runtime, so no route handlers, proxy, server actions or `next/image` optimization (`images.unoptimized`), and `next start` does not work.
 - Server components by default; only motion wrappers and `components/ui/expandable.tsx` are `'use client'`.
 
 ## Motion

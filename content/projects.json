@@ -56,10 +56,11 @@
         "title": "Tarja",
         "summary": "App instalable para apuntar los gastos del día a día, con categorías automáticas y modo sin conexión.",
         "description": [
-            "PWA para registrar gastos cotidianos: comida, compra, ocio, facturas y alquiler. La categoría se propone a partir del texto del gasto y se puede cambiar. También se pueden crear categorías propias, cada una con su color e icono.",
-            "Funciona sin conexión: cada gasto se guarda primero en el dispositivo y se sincroniza cuando vuelve la red, sin duplicados si la petición se repite. Un gasto con tarjeta de crédito o de restaurante cuenta en el mes en que se carga, y una compra se puede dividir en hasta doce pagos.",
-            "El resumen de cada mes calcula lo que sobra a partir de los ingresos y muestra gráficos del gasto por día, semana, mes y categoría. Hay tema claro, oscuro o del sistema, un color de app a elegir y la interfaz en español e inglés.",
-            "Una sola Cloudflare Worker sirve la SPA y la API, hecha con Hono sobre D1. El acceso es solo con Google (Better Auth), así que el enlace en vivo pide iniciar sesión."
+            "PWA para apuntar los gastos del día a día: comida, compra, ocio, facturas y alquiler. La categoría se sugiere a partir del texto que escribes y se puede cambiar, y también se pueden crear categorías propias con su color e icono. Un gasto se edita, se duplica o se borra, y un borrado se puede deshacer durante unos segundos.",
+            "Funciona sin conexión. Cada gasto se guarda primero en el dispositivo y se sube cuando hay red, y si la petición se repite el servidor no lo duplica. El resumen, los gráficos y la exportación a JSON o CSV salen de lo que el dispositivo ya tiene, sin pedir nada al servidor.",
+            "Cada gasto cuenta en el mes que le toca: uno pagado con tarjeta de crédito, en el mes del cargo, y una compra se puede repartir en pagos mensuales. El resumen calcula lo que sobra a partir de los ingresos del mes. Los límites, uno global y uno por categoría, avisan al llegar al 80 % o al pasarse, pero nunca impiden apuntar un gasto.",
+            "Una tarja era el palo con muescas con el que se llevaban las cuentas, y el diseño parte de ahí: colores planos sobre blanco o negro, IBM Plex Mono, esquinas rectas, sin sombras ni degradados y un borde grueso a la izquierda y abajo en cada caja. Tiene tema claro, oscuro o del sistema, un color de app a elegir, interfaz en español e inglés y un design system documentado en Storybook.",
+            "Un Worker de Cloudflare sirve la SPA y la API, hecha con Hono sobre D1. El acceso es solo con Google (Better Auth), así que el enlace en vivo pide iniciar sesión."
         ],
         "year": "2026",
         "role": "Diseño y desarrollo",
@@ -74,12 +75,13 @@
             "D1",
             "Better Auth",
             "CSS",
+            "Storybook",
             "Vitest"
         ],
         "accent": "#d4d4d4",
         "links": {
             "repo": "https://github.com/AntonioLBZ/spa-tarja",
-            "live": "https://tarja.antoniolbz.workers.dev"
+            "live": "https://tarja.albz.app"
         },
         "featured": true
     },
@@ -97,7 +99,7 @@
         "accent": "#ff5a1f",
         "links": {
             "repo": "https://github.com/AntonioLBZ/dev-portfolio",
-            "live": "https://antoniolbz.vercel.app"
+            "live": "https://albz.app"
         },
         "featured": true
     }
