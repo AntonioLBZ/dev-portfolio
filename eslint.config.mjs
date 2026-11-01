@@ -8,8 +8,8 @@ const eslintConfig = defineConfig([
     ...nextTs,
     // Turns off rules that conflict with Prettier
     prettier,
-    // Default ignores of eslint-config-next
-    globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts']),
+    // Default ignores of eslint-config-next, plus Wrangler's generated files
+    globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts', '.wrangler/**']),
 ]);
 
 export default eslintConfig;

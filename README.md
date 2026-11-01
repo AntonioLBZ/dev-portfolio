@@ -117,12 +117,7 @@ dev-portfolio/
 
 More detail in [AGENTS.md](AGENTS.md).
 
-## Roadmap / Pending
+## Pending
 
-- [x] Web sections: home and project pages
-- [x] Real CV and projects content
-- [x] Full design and styling
-- [x] Reusable UI components
-- [x] Vercel deployment
-- [ ] CV PDF generation from `content/cv.json`
-- [ ] Blog/notes and lab sections
+- CV PDF generated from `content/cv.json`
+- Blog/notes and lab sections

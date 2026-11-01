@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from 'next';
-import { Analytics } from '@vercel/analytics/next';
 import 'lenis/dist/lenis.css';
 import './globals.scss';
 import '../components/layout/anchor-focus.scss';
@@ -57,7 +56,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     <BackToTop />
                     <AnchorFocus />
                 </SmoothScroll>
-                <Analytics />
             </body>
         </html>
     );
