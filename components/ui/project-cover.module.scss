@@ -26,8 +26,14 @@
     position: absolute;
 }
 
+// Screenshot: no overscan or parallax, so the top of the page (its header) stays in view
+.project-cover__inner--image {
+    inset: 0;
+}
+
 .project-cover__image {
     object-fit: cover;
+    object-position: top;
 }
 
 .project-cover__mark {

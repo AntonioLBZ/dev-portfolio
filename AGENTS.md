@@ -32,7 +32,7 @@ pnpm lint:css:fix
 - Routes (`app/`, no i18n): `/` (one-page home built from `components/sections/*`), `/projects/[slug]` (static, `generateStaticParams`, `dynamicParams = false`).
 - Content lives in JSON and is read **only** through `lib/content.ts` getters:
     - `content/cv.json` (typed by `types/cv.ts`) → profile, experience, education, skills… `getProfile()` only exposes city and country from `address`. The repo is public: never add private data (phone, birth date, street address). A certification may carry an optional `credentialUrl` (shown as "Ver credencial" next to `credentialId` when expanded).
-    - `content/projects.json` (typed by `types/project.ts`) → projects. `placeholder: true` marks example entries; `cover` is optional (a gradient from `accent` is generated otherwise).
+    - `content/projects.json` (typed by `types/project.ts`) → projects. `placeholder: true` marks example entries; `cover` is optional (a gradient from `accent` is generated otherwise); images live in `public/projects/<slug>.webp`, 4:3 (1440×1080) like the card and anchored at the top (the detail page is 16:9 and crops the bottom); a cover image has no parallax.
 - Static export (`output: 'export'`) served as Cloudflare Workers static assets (`wrangler.jsonc`, deploys from GitHub): no server runtime, so no route handlers, proxy, server actions or `next/image` optimization (`images.unoptimized`), and `next start` does not work.
 - Server components by default; only motion wrappers and `components/ui/expandable.tsx` are `'use client'`.
 

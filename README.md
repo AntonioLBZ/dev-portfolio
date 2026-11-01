@@ -55,7 +55,8 @@ All content lives in JSON and is read only through the getters in `lib/content.t
   country from `address`.
 - `content/projects.json` (typed by `types/project.ts`): projects. `placeholder: true` marks example entries and
   `featured: true` shows the project on the home. `cover` is optional: without it, a gradient generated from `accent` is
-  used.
+  used. Screenshots go in `public/projects/<slug>.webp`, 4:3 (1440x1080) like the card, with the top of the
+  page in view and the bottom cropped.
 
 ## Folder structure
 

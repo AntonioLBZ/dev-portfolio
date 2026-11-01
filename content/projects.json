@@ -2,15 +2,16 @@
     {
         "slug": "anicalendar",
         "title": "AniCalendar",
-        "summary": "Calendario semanal con los estrenos de los animes que estás viendo.",
+        "summary": "Calendario semanal con los episodios de los animes que estás viendo.",
         "description": [
-            "SPA que muestra, día a día, cuándo se emiten los episodios de los animes que sigues. Basta con introducir tu usuario de AniList, Kitsu o MyAnimeList, sin registro ni login.",
-            "Ajustes persistentes en local: tema claro/oscuro/sistema, filtros de contenido, días vacíos, primer día de la semana y formato de hora. Disponible en español, inglés, francés y alemán.",
-            "Las peticiones a MyAnimeList pasan por un proxy en servidor para no exponer las credenciales del cliente."
+            "SPA que coloca en un calendario semanal el día en que se emite cada episodio de los animes que sigues. Se escribe el usuario de AniList, Kitsu o MyAnimeList y no hay registro ni login. La temporada actual y la siguiente se pueden mirar sin usuario.",
+            "Los ajustes se guardan en el navegador: tema claro, oscuro o del sistema, filtros de contenido, días vacíos, primer día de la semana y formato de hora. Un modo de edición permite ocultar series del calendario. Está en español, inglés, francés y alemán.",
+            "Las peticiones a MyAnimeList pasan por un proxy en el servidor para que su credencial no llegue al navegador."
         ],
         "year": "2026",
         "role": "Diseño y desarrollo",
         "stack": ["Next.js 16", "React 19", "TypeScript", "React Aria", "TanStack Query", "next-intl", "CSS", "Vitest"],
+        "cover": "/projects/anicalendar.webp",
         "accent": "#7c9cff",
         "links": {
             "repo": "https://github.com/AntonioLBZ/spa-anicalendar",
@@ -23,10 +24,10 @@
         "title": "Hoardex",
         "summary": "Dashboard de tu biblioteca de Steam: horas jugadas, backlog y juegos más jugados.",
         "description": [
-            "SPA que convierte un perfil de Steam en un dashboard con gráficos animados: juegos por estado de backlog, los más jugados y su peso en las horas totales, y la distribución por año de última partida y por horas jugadas.",
-            "Vista de biblioteca con portadas, filtros por estado, búsqueda y orden guardados en la URL. Incluye una demo con datos ficticios. Disponible en varios idiomas y temas.",
-            "Si inicias sesión con Steam (es opcional y solo comparte tu SteamID) puedes gestionar las categorías: crearlas, editarlas o borrarlas, y mover cada juego de una a otra arrastrándolo o desde su tarjeta. También puedes activar un historial diario de horas jugadas.",
-            "La API está hecha con Hono y desplegada en Vercel. Cachea las respuestas en Upstash Redis y con limitación de las peticiones diarias para no agotar la cuota de Steam. Las cuentas se guardan en Neon Postgres."
+            "SPA que convierte un perfil de Steam en un dashboard con gráficos animados: juegos por estado de backlog, los más jugados y qué parte de las horas totales suman, y cuántos juegos hay por año de última partida y por horas jugadas.",
+            "La biblioteca es una cuadrícula de portadas con filtros por estado, búsqueda y orden, y todo queda guardado en la URL. Hay una demo con datos ficticios. La interfaz está en español e inglés, con tema claro y oscuro.",
+            "Iniciar sesión con Steam es opcional y solo comparte el SteamID. Con la sesión se pueden crear, editar y borrar categorías, mover cada juego de una a otra arrastrándolo o desde su tarjeta, y activar un historial diario de horas jugadas.",
+            "La API es de Hono y corre en Vercel como una sola función. Las respuestas se cachean en Upstash Redis y las peticiones diarias a Steam tienen un tope para no agotar su cuota. Las cuentas están en Neon Postgres."
         ],
         "year": "2026",
         "role": "Diseño y desarrollo",
@@ -44,6 +45,7 @@
             "Neon Postgres",
             "Vitest"
         ],
+        "cover": "/projects/hoardex.webp",
         "accent": "#2dd4bf",
         "links": {
             "repo": "https://github.com/AntonioLBZ/spa-hoardex",
@@ -54,7 +56,7 @@
     {
         "slug": "tarja",
         "title": "Tarja",
-        "summary": "App instalable para apuntar los gastos del día a día, con categorías automáticas y modo sin conexión.",
+        "summary": "App instalable para apuntar los gastos del día a día, con categorías sugeridas y modo sin conexión.",
         "description": [
             "PWA para apuntar los gastos del día a día: comida, compra, ocio, facturas y alquiler. La categoría se sugiere a partir del texto que escribes y se puede cambiar, y también se pueden crear categorías propias con su color e icono. Un gasto se edita, se duplica o se borra, y un borrado se puede deshacer durante unos segundos.",
             "Funciona sin conexión. Cada gasto se guarda primero en el dispositivo y se sube cuando hay red, y si la petición se repite el servidor no lo duplica. El resumen, los gráficos y la exportación a JSON o CSV salen de lo que el dispositivo ya tiene, sin pedir nada al servidor.",
@@ -78,6 +80,7 @@
             "Storybook",
             "Vitest"
         ],
+        "cover": "/projects/tarja.webp",
         "accent": "#d4d4d4",
         "links": {
             "repo": "https://github.com/AntonioLBZ/spa-tarja",
@@ -90,12 +93,14 @@
         "title": "Dev Portfolio",
         "summary": "Este portfolio: una web one-page con animaciones ligadas al scroll.",
         "description": [
-            "Portfolio personal construido desde cero con un sistema de diseño propio basado en tokens CSS y SCSS modular, sin frameworks de estilos.",
-            "Animaciones con GSAP (ScrollTrigger y SplitText), scroll suave con Lenis y transiciones entre páginas con la View Transitions API, respetando siempre prefers-reduced-motion."
+            "Portfolio personal hecho desde cero. Los estilos son SCSS modular sobre tokens CSS propios, sin framework de estilos, y los contenidos salen de archivos JSON.",
+            "Las animaciones usan GSAP (ScrollTrigger y SplitText), el scroll suave es de Lenis y las transiciones entre páginas, de la View Transitions API. Todas respetan prefers-reduced-motion. El fondo es un campo de líneas de contorno en WebGL2 que se mueve con el scroll y el ratón y toma el color del proyecto que tienes a la vista.",
+            "Se exporta como sitio estático y se sirve desde Cloudflare Workers. La accesibilidad apunta a WCAG 2.2 AA: enlace para saltar al contenido, foco gestionado en los enlaces internos y menú que se maneja con el teclado."
         ],
         "year": "2026",
         "role": "Diseño y desarrollo",
-        "stack": ["Next.js 16", "React 19", "TypeScript", "SCSS", "GSAP", "Lenis"],
+        "stack": ["Next.js 16", "React 19", "TypeScript", "SCSS", "GSAP", "Lenis", "WebGL", "Cloudflare Workers"],
+        "cover": "/projects/dev-portfolio.webp",
         "accent": "#ff5a1f",
         "links": {
             "repo": "https://github.com/AntonioLBZ/dev-portfolio",

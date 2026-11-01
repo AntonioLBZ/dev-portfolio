@@ -11,10 +11,13 @@ interface ProjectCoverProps {
 // Cover: image if present, else a gradient from the project accent
 export function ProjectCover({ project, className, priority }: ProjectCoverProps) {
     const style = { '--project-accent': project.accent ?? 'var(--color-accent)' } as React.CSSProperties;
+    const inner = [styles['project-cover__inner'], project.cover && styles['project-cover__inner--image']]
+        .filter(Boolean)
+        .join(' ');
 
     return (
         <div className={[styles['project-cover'], className].filter(Boolean).join(' ')} style={style}>
-            <div className={styles['project-cover__inner']} data-parallax="">
+            <div className={inner} data-parallax={project.cover ? undefined : ''}>
                 {project.cover ? (
                     <Image
                         src={project.cover}
