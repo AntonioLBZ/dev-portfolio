@@ -1,5 +1,40 @@
 [
     {
+        "slug": "tarja",
+        "title": "Tarja",
+        "summary": "App instalable para apuntar los gastos del día a día, con categorías sugeridas y modo sin conexión.",
+        "description": [
+            "PWA para apuntar los gastos del día a día: comida, compra, ocio, facturas y alquiler. La categoría se sugiere a partir del texto que escribes y se puede cambiar, y también se pueden crear categorías propias con su color e icono. Un gasto se edita, se duplica o se borra, y un borrado se puede deshacer durante unos segundos.",
+            "Funciona sin conexión. Cada gasto se guarda primero en el dispositivo y se sube cuando hay red, y si la petición se repite el servidor no lo duplica. El resumen, los gráficos y la exportación a JSON o CSV salen de lo que el dispositivo ya tiene, sin pedir nada al servidor.",
+            "Cada gasto cuenta en el mes que le toca: uno pagado con tarjeta de crédito, en el mes del cargo, y una compra se puede repartir en pagos mensuales. El resumen calcula lo que sobra a partir de los ingresos del mes. Los límites, uno global y uno por categoría, avisan al llegar al 80 % o al pasarse, pero nunca impiden apuntar un gasto.",
+            "Una tarja era el palo con muescas con el que se llevaban las cuentas, y el diseño parte de ahí: colores planos sobre blanco o negro, IBM Plex Mono, esquinas rectas, sin sombras ni degradados y un borde grueso a la izquierda y abajo en cada caja. Tiene tema claro, oscuro o del sistema, un color de app a elegir, interfaz en español e inglés y un design system documentado en Storybook.",
+            "Un Worker de Cloudflare sirve la SPA y la API, hecha con Hono sobre D1. El acceso es solo con Google (Better Auth), así que el enlace en vivo pide iniciar sesión."
+        ],
+        "year": "2026",
+        "role": "Diseño y desarrollo",
+        "stack": [
+            "Vite",
+            "React 19",
+            "TypeScript",
+            "TanStack Router",
+            "TanStack Query",
+            "Hono",
+            "Cloudflare Workers",
+            "D1",
+            "Better Auth",
+            "CSS",
+            "Storybook",
+            "Vitest"
+        ],
+        "cover": "/projects/tarja.webp",
+        "accent": "#d4d4d4",
+        "links": {
+            "repo": "https://github.com/AntonioLBZ/spa-tarja",
+            "live": "https://tarja.albz.app"
+        },
+        "featured": true
+    },
+    {
         "slug": "anicalendar",
         "title": "AniCalendar",
         "summary": "Calendario semanal con los episodios de los animes que estás viendo.",
@@ -15,7 +50,7 @@
         "accent": "#7c9cff",
         "links": {
             "repo": "https://github.com/AntonioLBZ/spa-anicalendar",
-            "live": "https://anicalendar-lbz.vercel.app/es"
+            "live": "https://anicalendar.albz.app/es"
         },
         "featured": true
     },
@@ -49,42 +84,7 @@
         "accent": "#2dd4bf",
         "links": {
             "repo": "https://github.com/AntonioLBZ/spa-hoardex",
-            "live": "https://hoardex.vercel.app"
-        },
-        "featured": true
-    },
-    {
-        "slug": "tarja",
-        "title": "Tarja",
-        "summary": "App instalable para apuntar los gastos del día a día, con categorías sugeridas y modo sin conexión.",
-        "description": [
-            "PWA para apuntar los gastos del día a día: comida, compra, ocio, facturas y alquiler. La categoría se sugiere a partir del texto que escribes y se puede cambiar, y también se pueden crear categorías propias con su color e icono. Un gasto se edita, se duplica o se borra, y un borrado se puede deshacer durante unos segundos.",
-            "Funciona sin conexión. Cada gasto se guarda primero en el dispositivo y se sube cuando hay red, y si la petición se repite el servidor no lo duplica. El resumen, los gráficos y la exportación a JSON o CSV salen de lo que el dispositivo ya tiene, sin pedir nada al servidor.",
-            "Cada gasto cuenta en el mes que le toca: uno pagado con tarjeta de crédito, en el mes del cargo, y una compra se puede repartir en pagos mensuales. El resumen calcula lo que sobra a partir de los ingresos del mes. Los límites, uno global y uno por categoría, avisan al llegar al 80 % o al pasarse, pero nunca impiden apuntar un gasto.",
-            "Una tarja era el palo con muescas con el que se llevaban las cuentas, y el diseño parte de ahí: colores planos sobre blanco o negro, IBM Plex Mono, esquinas rectas, sin sombras ni degradados y un borde grueso a la izquierda y abajo en cada caja. Tiene tema claro, oscuro o del sistema, un color de app a elegir, interfaz en español e inglés y un design system documentado en Storybook.",
-            "Un Worker de Cloudflare sirve la SPA y la API, hecha con Hono sobre D1. El acceso es solo con Google (Better Auth), así que el enlace en vivo pide iniciar sesión."
-        ],
-        "year": "2026",
-        "role": "Diseño y desarrollo",
-        "stack": [
-            "Vite",
-            "React 19",
-            "TypeScript",
-            "TanStack Router",
-            "TanStack Query",
-            "Hono",
-            "Cloudflare Workers",
-            "D1",
-            "Better Auth",
-            "CSS",
-            "Storybook",
-            "Vitest"
-        ],
-        "cover": "/projects/tarja.webp",
-        "accent": "#d4d4d4",
-        "links": {
-            "repo": "https://github.com/AntonioLBZ/spa-tarja",
-            "live": "https://tarja.albz.app"
+            "live": "https://hoardex.albz.app"
         },
         "featured": true
     },
