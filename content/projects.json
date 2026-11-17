@@ -2,13 +2,14 @@
     {
         "slug": "tarja",
         "title": "Tarja",
-        "summary": "App instalable para apuntar los gastos del día a día, con categorías sugeridas y modo sin conexión.",
+        "summary": "App instalable para apuntar los gastos del día a día y compartirlos en grupos, con modo sin conexión.",
         "description": [
-            "PWA para apuntar los gastos del día a día: comida, compra, ocio, facturas y alquiler. La categoría se sugiere a partir del texto que escribes y se puede cambiar, y también se pueden crear categorías propias con su color e icono. Un gasto se edita, se duplica o se borra, y un borrado se puede deshacer durante unos segundos.",
-            "Funciona sin conexión. Cada gasto se guarda primero en el dispositivo y se sube cuando hay red, y si la petición se repite el servidor no lo duplica. El resumen, los gráficos y la exportación a JSON o CSV salen de lo que el dispositivo ya tiene, sin pedir nada al servidor.",
-            "Cada gasto cuenta en el mes que le toca: uno pagado con tarjeta de crédito, en el mes del cargo, y una compra se puede repartir en pagos mensuales. El resumen calcula lo que sobra a partir de los ingresos del mes. Los límites, uno global y uno por categoría, avisan al llegar al 80 % o al pasarse, pero nunca impiden apuntar un gasto.",
-            "Una tarja era el palo con muescas con el que se llevaban las cuentas, y el diseño parte de ahí: colores planos sobre blanco o negro, IBM Plex Mono, esquinas rectas, sin sombras ni degradados y un borde grueso a la izquierda y abajo en cada caja. Tiene tema claro, oscuro o del sistema, un color de app a elegir, interfaz en español e inglés y un design system documentado en Storybook.",
-            "Un Worker de Cloudflare sirve la SPA y la API, hecha con Hono sobre D1. El acceso es solo con Google (Better Auth), así que el enlace en vivo pide iniciar sesión."
+            "PWA para apuntar los gastos del día a día. La categoría se sugiere a partir del texto y se puede cambiar, y también se pueden crear categorías propias.",
+            "Funciona sin conexión: cada gasto se guarda primero en el dispositivo y se sube cuando hay red. El resumen, los gráficos y la exportación a JSON o CSV salen de lo que ya hay en el dispositivo.",
+            "Un gasto con tarjeta de crédito cuenta en el mes del cargo, y una compra se puede repartir en pagos mensuales. Hay límites de gasto, global y por categoría, que avisan al llegar al 80 % o al pasarse.",
+            "Los gastos también se comparten en grupos o con amigos, que se añaden con un enlace de invitación. Cada gasto se reparte a partes iguales, por porcentaje o por importe, y el grupo lleva la cuenta de quién debe a quién.",
+            "Una tarja era el palo con muescas con el que se llevaban las cuentas, y el diseño parte de ahí: colores planos, IBM Plex Mono, esquinas rectas y un borde grueso en cada caja. El design system está documentado en Storybook.",
+            "Un Worker de Cloudflare sirve la SPA y la API, hecha con Hono sobre D1. El acceso es solo con Google, así que el enlace en vivo pide iniciar sesión."
         ],
         "year": "2026",
         "role": "Diseño y desarrollo",
@@ -39,8 +40,8 @@
         "title": "AniCalendar",
         "summary": "Calendario semanal con los episodios de los animes que estás viendo.",
         "description": [
-            "SPA que coloca en un calendario semanal el día en que se emite cada episodio de los animes que sigues. Se escribe el usuario de AniList, Kitsu o MyAnimeList y no hay registro ni login. La temporada actual y la siguiente se pueden mirar sin usuario.",
-            "Los ajustes se guardan en el navegador: tema claro, oscuro o del sistema, filtros de contenido, días vacíos, primer día de la semana y formato de hora. Un modo de edición permite ocultar series del calendario. Está en español, inglés, francés y alemán.",
+            "SPA que coloca en un calendario semanal el día en que se emite cada episodio de los animes que sigues o tienes pendientes. Se escribe el usuario de AniList, Kitsu o MyAnimeList y no hay registro ni login. La temporada actual y la siguiente se pueden mirar sin usuario.",
+            "Los ajustes se guardan en el navegador: tema claro, oscuro o del sistema, vista en cuadrícula o en lista, filtros de contenido, días vacíos, primer día de la semana y formato de hora. Un modo de edición permite ocultar series del calendario. Está en español, inglés, francés y alemán.",
             "Las peticiones a MyAnimeList pasan por un proxy en el servidor para que su credencial no llegue al navegador."
         ],
         "year": "2026",
@@ -73,6 +74,7 @@
             "TanStack Router",
             "TanStack Query",
             "Recharts",
+            "Motion",
             "GSAP",
             "SCSS",
             "Hono",
